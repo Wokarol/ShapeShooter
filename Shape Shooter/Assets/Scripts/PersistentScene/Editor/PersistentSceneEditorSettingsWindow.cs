@@ -18,7 +18,7 @@ namespace Wokarol
 
 		private void OnGUI ()
 		{
-			var key = $"Scene_{AssetDatabase.FindAssets(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name)}_NoPersistentScene";
+			var key = $"Scene_{AssetDatabase.FindAssets(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name)[0]}_NoPersistentScene";
 			bool enabled = !EditorPrefs.HasKey(key);
 
 			EditorGUILayout.BeginHorizontal();
