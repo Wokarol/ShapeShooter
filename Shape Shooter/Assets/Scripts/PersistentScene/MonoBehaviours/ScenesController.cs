@@ -26,6 +26,10 @@ namespace Wokarol
 				Destroy(gameObject);
 				return;
 			}
+
+            if(SceneManager.sceneCount > 1) {
+                FadeImageGroup.alpha = 0;
+            }
 		}
 
 		public void ChangeScene (string nameOfNewScene)
