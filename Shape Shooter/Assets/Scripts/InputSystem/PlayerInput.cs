@@ -8,9 +8,11 @@ namespace Wokarol.InputSystem
     {
         private void Update() {
             Vector2 v = Movement;
-            v.x = Input.GetAxisRaw("Horizontal");
-            v.y = Input.GetAxisRaw("Vertical");
-            Movement = v.normalized;
+            v.x = Input.GetAxis("Horizontal");
+            v.y = Input.GetAxis("Vertical");
+            Movement = v;
+            if (Movement.sqrMagnitude > 1)
+                Movement.Normalize();
         }
     } 
 }
