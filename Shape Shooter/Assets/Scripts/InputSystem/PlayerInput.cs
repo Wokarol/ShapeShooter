@@ -7,7 +7,7 @@ namespace Wokarol.InputSystem
 {
     public class PlayerInput : InputData
     {
-        [SerializeField] Camera mainCamera;
+        [SerializeField] Camera mainCamera = null;
 
         bool usingPad = false;
         Vector3 oldMousePos = Vector3.zero;
@@ -23,10 +23,14 @@ namespace Wokarol.InputSystem
             if (usingPad) {
                 if (JoystickMoved()) {
                     AimDirection = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"));
+                } else if(Movement.sqrMagnitude > 0.04) {
+                    AimDirection = Movement;
                 }
             } else {
                 AimDirection = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
             }
+
+            Shoot = Input.GetMouseButton(0) || Input.GetButtonDown("Shoot");
         }
         private void CheckForInputChange() {
             if (usingPad && (oldMousePos - Input.mousePosition).sqrMagnitude > sqrMinMouseDelta) {

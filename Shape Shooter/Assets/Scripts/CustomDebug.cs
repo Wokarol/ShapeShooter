@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 
+#if !DEVELOPEMENT_BUILD && !UNITY_EDITOR
 public static class Debug
 {
     [Conditional("DEVELOPMENT_BUILD")]
@@ -37,4 +38,5 @@ public static class Debug
     public static void LogError(string message, UnityEngine.GameObject context) {
         UnityEngine.Debug.LogError(message, context);
     }
-}
+} 
+#endif
