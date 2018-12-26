@@ -7,12 +7,18 @@ namespace Wokarol.HealthSystem
     public class HitOnContact : MonoBehaviour
     {
         [SerializeField] int damagePerContact = 1;
-        [SerializeField] bool destroyOnCollision;
+        [SerializeField] bool destroyOnCollision = false;
+        [SerializeField] bool rotateToFaceNormal = false;
 
         private void OnTriggerEnter2D(Collider2D collision) {
             DoDamage(collision);
         }
         private void OnCollisionEnter2D(Collision2D collision) {
+            if (rotateToFaceNormal) {
+                var newUp = -collision.GetContact(0).normal;
+                transform.rotation = Quaternion.FromToRotation(Vector3.up, newUp);
+            }
+
             DoDamage(collision.collider);
         }
 
@@ -21,9 +27,11 @@ namespace Wokarol.HealthSystem
             if (actorHealth)
                 actorHealth.Hit(damagePerContact);
 
-            var destroyable = GetComponent<IDestroyable>();
-            if (destroyable != null)
-                destroyable.Destroy();
+            if (destroyOnCollision) {
+                var destroyable = GetComponent<IDestroyable>();
+                if (destroyable != null)
+                    destroyable.Destroy(); 
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Wokarol.InputSystem
                 AimDirection = (mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
             }
 
-            Shoot = Input.GetMouseButton(0) || Input.GetButtonDown("Shoot");
+            Shoot = Input.GetMouseButton(0) || Input.GetButton("Shoot");
         }
         private void CheckForInputChange() {
             if (usingPad && (oldMousePos - Input.mousePosition).sqrMagnitude > sqrMinMouseDelta) {
