@@ -9,8 +9,9 @@ namespace Wokarol
     {
         new SpriteRenderer renderer;
         MaterialPropertyBlock spritePropertyBlock;
-        [SerializeField] new Rigidbody2D rigidbody = null;
         [SerializeField] float speedMultiplier = 0.1f;
+
+        Vector3 lastPos;
 
         public MaterialPropertyBlock SpritePropertyBlock {
             get {
@@ -28,14 +29,15 @@ namespace Wokarol
                 return renderer;
             }
         }
-        private void OnValidate() {
-            if (rigidbody == null) {
-                rigidbody = GetComponentInParent<Rigidbody2D>();
-            }
-        }
 
         private void Update() {
-            UpdateValues(rigidbody.velocity.normalized, rigidbody.velocity.magnitude * speedMultiplier);
+            var velocity = lastPos - transform.position;
+            UpdateValues(velocity.normalized, velocity.magnitude * (speedMultiplier / Time.deltaTime));
+            lastPos = transform.position;
+        }
+
+        private void OnEnable() {
+            lastPos = transform.position;
         }
 
         private void OnDisable() {

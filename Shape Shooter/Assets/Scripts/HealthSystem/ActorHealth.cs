@@ -20,6 +20,7 @@ namespace Wokarol.HealthSystem
         [SerializeField] UnityEvent onInvincibleFrameStop = new UnityEvent();
         [Space]
         [SerializeField] UnityEvent onHit = new UnityEvent();
+        [SerializeField] UnityEvent onDeadlyHit = new UnityEvent();
 
         public event System.Action OnHealthChanged = null;
 
@@ -58,10 +59,12 @@ namespace Wokarol.HealthSystem
                 invincible = true;
                 invincibilityCountdown = invincibilityFrameTime;
                 onInvincibleFrameStart.Invoke();
-                onHit.Invoke();
 
                 if(CurrentHealth <= 0) {
+                    onDeadlyHit.Invoke();
                     GetComponent<IDestroyable>()?.Destroy();
+                } else {
+                    onHit.Invoke();
                 }
             }
         }
@@ -80,9 +83,14 @@ namespace Wokarol.HealthSystem
         {
             CurrentHealth = Mathf.Clamp(value, 0, maxHealth);
             if (CurrentHealth <= 0) {
+                onDeadlyHit.Invoke();
                 GetComponent<IDestroyable>()?.Destroy();
             }
             OnHealthChanged?.Invoke();
+        }
+
+        public void ResetHealth() {
+            SetHealth(maxHealth);
         }
 
     } 

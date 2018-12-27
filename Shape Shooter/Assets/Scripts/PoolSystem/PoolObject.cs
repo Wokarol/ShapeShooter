@@ -10,7 +10,7 @@ namespace Wokarol.PoolSystem
         public event Action<PoolObject> OnDestroyed = null;
         public event Action OnDestroy = null;
 
-        public void Recreate(Vector3 pos, Quaternion rot)
+        public virtual void Recreate(Vector3 pos, Quaternion rot)
         {
             transform.SetPositionAndRotation(pos, rot);
             Recreate();
