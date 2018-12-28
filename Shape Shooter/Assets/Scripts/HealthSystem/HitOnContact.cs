@@ -30,7 +30,7 @@ namespace Wokarol.HealthSystem
             if (destroyOnCollision) {
                 var destroyable = GetComponent<IDestroyable>();
                 if (destroyable != null)
-                    destroyable.Destroy(); 
+                    destroyable.Destroy();
             }
         }
     }

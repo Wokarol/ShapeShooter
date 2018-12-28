@@ -17,9 +17,11 @@ MonoBehaviour:
     m_Color: {r: 0.22352943, g: 0.24313727, b: 0.27450982, a: 1}
   - m_Name: Blueish
     m_Color: {r: 0, g: 0.6784314, b: 0.70980394, a: 1}
-  - m_Name: AlmostWhite
+  - m_Name: Light Blueish
+    m_Color: {r: 0.098039225, g: 0.9607844, b: 1, a: 1}
+  - m_Name: Almost Whiteish
     m_Color: {r: 1, g: 0.9568628, b: 0.87843144, a: 1}
-  - m_Name: Kinda Orange
+  - m_Name: Orangeish
     m_Color: {r: 0.9725491, g: 0.70980394, b: 0, a: 1}
   - m_Name: Reddish
     m_Color: {r: 0.98823535, g: 0.23529413, b: 0.23529413, a: 1}

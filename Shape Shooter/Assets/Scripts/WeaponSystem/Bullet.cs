@@ -41,6 +41,7 @@ public class Bullet : PoolObject
     }
 
     public override void Activate() {
+        transform.localScale = Vector3.zero;
         gfx.SetActive(true);
         rigidbody.simulated = true;
         rigidbody.velocity = transform.up * speed;
