@@ -9,9 +9,11 @@ public class Enemy : PoolObject
     [SerializeField] GameObject gfx = null;
     [SerializeField] Behaviour[] otherComponents = new Behaviour[0];
     [SerializeField] ActorHealth actorHealth = null;
+    public System.Action<Enemy> OnEnemyDestroyed;
 
     public override void Destroy() {
         Deactivate();
+        OnEnemyDestroyed?.Invoke(this);
         base.Destroy();
     }
 

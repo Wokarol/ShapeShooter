@@ -23,9 +23,9 @@ namespace Wokarol.HealthSystem
         }
 
         void DoDamage(Collider2D collision) {
-            var actorHealth = collision.GetComponent<ActorHealth>();
-            if (actorHealth)
-                actorHealth.Hit(damagePerContact);
+            var damagable = collision.GetComponent<IDamagable>();
+            if (damagable != null)
+                damagable.Hit(damagePerContact);
 
             if (destroyOnCollision) {
                 var destroyable = GetComponent<IDestroyable>();

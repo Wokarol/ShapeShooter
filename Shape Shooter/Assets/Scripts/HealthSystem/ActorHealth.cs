@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Wokarol.HealthSystem
 {
-    public class ActorHealth : MonoBehaviour
+    public class ActorHealth : MonoBehaviour, IDamagable, IHealable, IHasHealth
     {
         [Header("Starting variables")]
         [SerializeField] int maxHealth = 10;

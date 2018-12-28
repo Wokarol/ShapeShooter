@@ -62,5 +62,29 @@ public static class Debug
     public static void DrawLine(UnityEngine.Vector3 start, UnityEngine.Vector3 end) {
         UnityEngine.Debug.DrawLine(start, end);
     }
+
+    [Conditional("DEVELOPMENT_BUILD")]
+    [Conditional("UNITY_EDITOR")]
+    public static void DrawRay(UnityEngine.Vector3 start, UnityEngine.Vector3 end, UnityEngine.Color color, float duration, bool depthTest) {
+        UnityEngine.Debug.DrawRay(start, end, color, duration, depthTest);
+    }
+
+    [Conditional("DEVELOPMENT_BUILD")]
+    [Conditional("UNITY_EDITOR")]
+    public static void DrawRay(UnityEngine.Vector3 start, UnityEngine.Vector3 end, UnityEngine.Color color, float duration) {
+        UnityEngine.Debug.DrawRay(start, end, color, duration);
+    }
+
+    [Conditional("DEVELOPMENT_BUILD")]
+    [Conditional("UNITY_EDITOR")]
+    public static void DrawRay(UnityEngine.Vector3 start, UnityEngine.Vector3 end, UnityEngine.Color color) {
+        UnityEngine.Debug.DrawRay(start, end, color);
+    }
+
+    [Conditional("DEVELOPMENT_BUILD")]
+    [Conditional("UNITY_EDITOR")]
+    public static void DrawRay(UnityEngine.Vector3 start, UnityEngine.Vector3 end) {
+        UnityEngine.Debug.DrawRay(start, end);
+    }
 } 
 #endif

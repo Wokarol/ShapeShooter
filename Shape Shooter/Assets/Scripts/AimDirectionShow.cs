@@ -9,7 +9,7 @@ namespace Wokarol
         [SerializeField] InputSystem.InputData input = null;
 
         private void Update() {
-            transform.up = input.AimDirection;
+            transform.up = input.RealAimDirection;
         }
     } 
 }

@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5794013051489337993, guid: 1497c1a7d5f186b4d993e692aee340cf, type: 3}
   initialSize: 10
+  populateOnAwake: 1
 --- !u!1 &8714523163867572182
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +198,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  useAutoAimForPad: 1
+  useAutoAimForMouse: 0
+  autoAimLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  minDotProduct: 0.85
 --- !u!114 &8714523163867572178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,7 +415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe38ce41df37d6145893b855956299f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 8714523163867572181}
   speedMultiplier: 0.1
 --- !u!95 &8714523164275174683
 Animator:
