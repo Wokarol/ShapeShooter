@@ -15,7 +15,7 @@ namespace Wokarol
 		{
 			Debug.Log("Finding Persistent Scene");
 			//var key = $"{Application.productName}_{SceneManager.GetActiveScene().name}";
-			var key = $"Scene_{AssetDatabase.FindAssets(SceneManager.GetActiveScene().name)}_NoPersistentScene";
+			var key = $"Scene_{AssetDatabase.FindAssets(SceneManager.GetActiveScene().name)[0]}_NoPersistentScene";
 			if (EditorPrefs.HasKey(key)) {
 				return;
 			}

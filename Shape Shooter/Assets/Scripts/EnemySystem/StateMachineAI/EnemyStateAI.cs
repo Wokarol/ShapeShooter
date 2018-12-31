@@ -9,6 +9,8 @@ using Wokarol.StateSystem;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyStateAI : MonoBehaviour, IResetable
 {
+    [SerializeField] DebugBlock AIDebugBlock;
+
     StateMachine aiMachine;
     [SerializeField] Target target = new Target();
     NavMeshAgent agent;
