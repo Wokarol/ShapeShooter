@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 8714523163867572177}
-  shotInterval: 0.08
+  shotInterval: 0.04
   bulletPool: {fileID: 8714523163277426863}
   animator: {fileID: 8714523164275174683}
   animationTrigger: Shot

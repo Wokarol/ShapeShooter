@@ -8,6 +8,8 @@ public class Enemy : PoolObject
 {
     [SerializeField] GameObject gfx = null;
     [SerializeField] Behaviour[] otherComponents = new Behaviour[0];
+    IResetable[] resetables;
+
     [SerializeField] ActorHealth actorHealth = null;
     public System.Action<Enemy> OnEnemyDestroyed;
 
@@ -18,9 +20,13 @@ public class Enemy : PoolObject
     }
 
     public override void Activate() {
+        if(resetables == null) resetables = GetComponents<IResetable>();
         gfx.SetActive(true);
         foreach (var component in otherComponents) {
             component.enabled = true;
+        }
+        foreach (var resetable in resetables) {
+            resetable.ResetObject();
         }
         actorHealth.ResetHealth();
     }

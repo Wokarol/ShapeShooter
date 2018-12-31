@@ -7,7 +7,7 @@ using Wokarol.AI;
 using Wokarol.StateSystem;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyStateAI : MonoBehaviour
+public class EnemyStateAI : MonoBehaviour, IResetable
 {
     StateMachine aiMachine;
     [SerializeField] Target target = new Target();
@@ -52,6 +52,10 @@ public class EnemyStateAI : MonoBehaviour
                 target.Transform = null;
             }
         }
+    }
+
+    public void ResetObject() {
+        aiMachine?.Restart();
     }
 
     private void OnDrawGizmosSelected() {
