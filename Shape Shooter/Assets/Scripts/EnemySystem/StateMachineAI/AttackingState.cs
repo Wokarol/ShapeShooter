@@ -5,9 +5,11 @@ using Wokarol.StateSystem;
 
 public class AttackingState : State
 {
+    const float targetRefreshInterval = 0.2f;
     private Target target;
     private NavMeshAgent agent;
     private WaitState wait;
+    private float countdown;
 
     public AttackingState(Target target, NavMeshAgent agent, WaitState wait) {
         this.target = target;
@@ -16,14 +18,19 @@ public class AttackingState : State
     }
 
     public override void Enter(StateMachine stateMachine) {
-        Debug.Log($"<b> It's attacking time</b>");
+        countdown = 0;
     }
 
     public override void Exit() {
-        Debug.Log($"<b> I see no enemy</b>");
+        agent.SetDestination(agent.transform.position + agent.velocity);
     }
 
     protected override State Process() {
+        countdown -= Time.deltaTime;
+        if (countdown < 0) {
+            countdown += targetRefreshInterval;
+            if(target.Transform) agent.SetDestination(target.Transform.position);
+        }
         return null;
     }
 }

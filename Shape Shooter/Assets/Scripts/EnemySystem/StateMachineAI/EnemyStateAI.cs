@@ -35,7 +35,8 @@ public class EnemyStateAI : MonoBehaviour
     private void Update() {
         TargetCalculation();
         agent.stoppingDistance = stoppingDistance;
-        aiMachine.Tick();
+        aiMachine?.Tick();
+        //agent.SetDestination(Vector3.zero);
     }
 
     private void TargetCalculation() {
@@ -51,5 +52,19 @@ public class EnemyStateAI : MonoBehaviour
                 target.Transform = null;
             }
         }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.DrawWireSphere(transform.position, distance);
+        if (target.Transform) {
+            Gizmos.color = Color.red * Color.grey;
+            Gizmos.DrawWireSphere(target.Transform.position, 0.2f);
+        }
+        if (agent) {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(agent.destination, 0.3f);
+        }
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
     }
 }
