@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class DebugBlock
 {
     public string OverrideName { get; set; } = "";
@@ -48,7 +47,6 @@ public class DebugBlock
 
 }
 
-[System.Serializable]
 public struct DataObject
 {
     public string Name;

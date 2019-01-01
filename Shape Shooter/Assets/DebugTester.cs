@@ -6,39 +6,28 @@ using UnityEngine;
 
 public class DebugTester : MonoBehaviour
 {
-    [SerializeField] DebugBlock firstBlock;
-    [SerializeField] DebugBlock secondBlock;
+    public DebugBlock FirstBlock { get; private set; }
     private void Start() {
         EditorUtility.SetDirty(this);
 
-        firstBlock.OverrideName = "AI";
-        secondBlock.OverrideName = ":P";
+        FirstBlock.OverrideName = "AI";
         StartCoroutine(TestCoroutine());
-        StartCoroutine(QuickCoroutine());
     }
 
     private IEnumerator TestCoroutine() {
-        firstBlock.Define("State");
+        FirstBlock.Define("State");
         while (true) {
-            firstBlock.Change("State", "Thinking");
+            FirstBlock.Change("State", "Thinking");
             yield return new WaitForSeconds(0.4f);
-            firstBlock.Change("State", "Walking");
-            firstBlock.Define("Target");
-            firstBlock.Change("Target", "Shop");
+            FirstBlock.Change("State", "Walking");
+            FirstBlock.Define("Target");
+            FirstBlock.Change("Target", "Shop");
             yield return new WaitForSeconds(0.1f);
-            firstBlock.Change("Target", "Armory");
+            FirstBlock.Change("Target", "Armory");
             yield return new WaitForSeconds(0.1f);
-            firstBlock.Change("Target", "House");
+            FirstBlock.Change("Target", "House");
             yield return new WaitForSeconds(0.1f);
-            firstBlock.Undefine("Target"); 
-        }
-    }
-
-    private IEnumerator QuickCoroutine() {
-        secondBlock.Define("Value");
-        while (true) {
-            secondBlock.Change("Value", UnityEngine.Random.value.ToString("F2"));
-            yield return null;
+            FirstBlock.Undefine("Target"); 
         }
     }
 }
