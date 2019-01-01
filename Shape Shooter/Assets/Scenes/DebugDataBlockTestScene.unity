@@ -155,6 +155,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53206036b7d1f3140b5faed97fd12464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block:
-    data: []
-  value: 0

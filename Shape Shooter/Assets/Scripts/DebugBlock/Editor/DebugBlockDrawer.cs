@@ -3,22 +3,39 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
 [CustomPropertyDrawer(typeof(DebugBlock))]
+//[CustomEditor(typeof(DebugBlock))]
 public class DebugBlockDrawer : PropertyDrawer
 {
+    //public override void OnInspectorGUI() {
+    //    DebugBlock block = fieldInfo.GetValue(property.serializedObject.targetObject) as DebugBlock;
+    //    string info = $"{(block.OverrideName.Length == 0 ? label.text : block.OverrideName)}\n-------------------------";
+
+    //    var dataValues = block.Data.Values;
+    //    foreach (DataObject data in dataValues) {
+    //        info += $"\n{data.Name}:\t{data.Value}";
+    //    }
+
+    //    EditorGUI.HelpBox(position, info, MessageType.Info);
+    //}
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
-        string info = $"{label.text}\n-------------------------";
-        var data = property.FindPropertyRelative("data");
-        for (int i = 0; i < data.arraySize; i++) {
-            var dataI = data.GetArrayElementAtIndex(i);
-            info += $"\n{dataI.FindPropertyRelative("Name").stringValue}:\t{dataI.FindPropertyRelative("Value").stringValue}";
+        DebugBlock block = fieldInfo.GetValue(property.serializedObject.targetObject) as DebugBlock;
+        string info = $"{(block.OverrideName.Length == 0 ? label.text : block.OverrideName)}\n-------------------------";
+
+        var dataValues = block.Data.Values;
+        foreach (DataObject data in dataValues) {
+            info += $"\n{data.Name}:\t{data.Value}";
         }
-        EditorGUI.HelpBox(position, info, MessageType.None);
+
+        EditorGUI.HelpBox(position, info, MessageType.Info);
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
         int rowsCount = 2;
-        rowsCount += property.FindPropertyRelative("data").arraySize;
+        DebugBlock block = fieldInfo.GetValue(property.serializedObject.targetObject) as DebugBlock;
+        rowsCount += block.Data.Count;
         return 11 * rowsCount + 6;
     }
 }

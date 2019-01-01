@@ -127,12 +127,12 @@ PrefabInstance:
     - target: {fileID: 8714523163867572180, guid: ac4d9425548066b4eb5880a5581c2010,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.12
       objectReference: {fileID: 0}
     - target: {fileID: 8714523163867572180, guid: ac4d9425548066b4eb5880a5581c2010,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8714523163867572180, guid: ac4d9425548066b4eb5880a5581c2010,
         type: 3}
@@ -507,6 +507,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.043838352
+      objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.9123233
+      objectReference: {fileID: 0}
     - target: {fileID: 827240905822156153, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -561,16 +581,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0.017167836
-      objectReference: {fileID: 0}
-    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9656643
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4480f969dac06b141876b135a294428e, type: 3}
