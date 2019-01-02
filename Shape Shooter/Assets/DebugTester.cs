@@ -6,11 +6,9 @@ using UnityEngine;
 
 public class DebugTester : MonoBehaviour
 {
-    public DebugBlock FirstBlock { get; private set; }
+    public DebugBlock FirstBlock { get; private set; } = new DebugBlock("Test");
     private void Start() {
         EditorUtility.SetDirty(this);
-
-        FirstBlock.OverrideName = "AI";
         StartCoroutine(TestCoroutine());
     }
 

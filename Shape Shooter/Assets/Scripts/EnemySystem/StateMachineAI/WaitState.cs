@@ -6,7 +6,7 @@ public class WaitState : State
     public override void Enter(StateMachine stateMachine) {
     }
 
-    public override void Exit() {
+    public override void Exit(StateMachine stateMachine) {
     }
 
     protected override State Process() {

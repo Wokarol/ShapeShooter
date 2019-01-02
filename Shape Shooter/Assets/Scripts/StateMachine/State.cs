@@ -10,7 +10,7 @@ namespace Wokarol.StateSystem
         List<Transition> transitions = new List<Transition>();
 
         public abstract void Enter(StateMachine stateMachine);
-        public abstract void Exit();
+        public abstract void Exit(StateMachine stateMachine);
 
         public State Tick() {
             State processedState = Process();

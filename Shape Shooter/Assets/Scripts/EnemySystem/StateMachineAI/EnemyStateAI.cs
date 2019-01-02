@@ -9,7 +9,9 @@ using Wokarol.StateSystem;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyStateAI : MonoBehaviour, IResetable
 {
-    [SerializeField] DebugBlock AIDebugBlock;
+    private const string TargetID = "AI_Target";
+
+    public DebugBlock AIDebugBlock { get; } = new DebugBlock("AI");
 
     StateMachine aiMachine;
     [SerializeField] Target target = new Target();
@@ -21,6 +23,7 @@ public class EnemyStateAI : MonoBehaviour, IResetable
 
     private void Start() {
         agent = GetComponent<NavMeshAgent>();
+        AIDebugBlock.Define("Target", TargetID);
 
         var wait = new WaitState();
         var attacking = new AttackingState(target, agent, wait);
@@ -28,10 +31,7 @@ public class EnemyStateAI : MonoBehaviour, IResetable
         wait.AddTransition(() => target.Transform != null, attacking);
         attacking.AddTransition(() => target.Transform == null, wait);
 
-        //wait.AddTransition(() => DEBUG_EnemyInSight, attacking);
-        //attacking.AddTransition(() => !DEBUG_EnemyInSight, wait);
-
-        aiMachine = new StateMachine(wait);
+        aiMachine = new StateMachine(wait, AIDebugBlock);
     }
 
     private void Update() {
@@ -46,12 +46,14 @@ public class EnemyStateAI : MonoBehaviour, IResetable
             var collider = Physics2D.OverlapCircle(transform.position, distance, targetLayer);
             if (collider) {
                 target.Transform = collider.transform;
+                AIDebugBlock.Change(TargetID, target.Transform.name);
             }
         }
         if (target.Transform) {
             float sqrDist = Vector2.SqrMagnitude(transform.position - target.Transform.position);
             if (sqrDist > (distance * distance)) {
                 target.Transform = null;
+                AIDebugBlock.Change(TargetID, "null");
             }
         }
     }

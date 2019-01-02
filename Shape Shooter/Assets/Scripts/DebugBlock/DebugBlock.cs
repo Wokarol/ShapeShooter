@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class DebugBlock
 {
-    public string OverrideName { get; set; } = "";
+    public string Name { get; set; } = "";
     public Dictionary<string, DataObject> Data { get; private set; } = new Dictionary<string, DataObject>();
+
+    public DebugBlock(string name) {
+        Name = name;
+    }
 
     public void Clear() {
         Data.Clear();
@@ -14,6 +18,14 @@ public class DebugBlock
     #region Public functions - Defining
     public bool Define(string DataNameAndID) {
         return Define(DataNameAndID, DataNameAndID);
+    }
+    public bool Define(string dataName, string dataID, string value) {
+        if (!Data.ContainsKey(dataID)) {
+            Data.Add(dataID, new DataObject(dataName, value));
+            return true;
+        } else {
+            return false;
+        }
     }
     public bool Define(string dataName, string dataID) {
         if (!Data.ContainsKey(dataID)) {

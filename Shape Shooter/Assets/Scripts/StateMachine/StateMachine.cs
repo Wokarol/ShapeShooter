@@ -7,17 +7,28 @@ namespace Wokarol.StateSystem
 {
     public class StateMachine
     {
+        private const string StateID = "Machine_State";
+        private const string DividerID = "Machine_Divider";
         State _initialState;
         State _currentState;
-        public StateMachine(State initialState) {
-            _initialState = _currentState = initialState;
-            _currentState?.Enter(this);
+        public DebugBlock DebugBlock { get; }
+
+        private StateMachine() { }
+        public StateMachine(State initialState, DebugBlock debugBlock) {
+            _initialState = initialState;
+            DebugBlock = debugBlock;
+            DebugBlock.Define("State", StateID);
+            DebugBlock.Define("", DividerID);
+            ChangeState(_initialState);
         }
 
         public void ChangeState(State nextState) {
-            _currentState?.Exit();
+            _currentState?.Exit(this);
             _currentState = nextState;
-            _currentState?.Enter(this);
+            if (_currentState != null) {
+                _currentState.Enter(this);
+                DebugBlock.Change(StateID, _currentState.ToString());
+            }
         }
 
         public void Tick() {
@@ -30,5 +41,5 @@ namespace Wokarol.StateSystem
         internal void Restart() {
             ChangeState(_initialState);
         }
-    } 
+    }
 }
