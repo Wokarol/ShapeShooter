@@ -328,6 +328,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1552248298498264554, guid: c3fed7607d4df78469b2fca5ee04c5c9,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552248298498264554, guid: c3fed7607d4df78469b2fca5ee04c5c9,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.9568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552248298498264554, guid: c3fed7607d4df78469b2fca5ee04c5c9,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552248298498264554, guid: c3fed7607d4df78469b2fca5ee04c5c9,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3fed7607d4df78469b2fca5ee04c5c9, type: 3}
 --- !u!1 &1008684636
@@ -520,12 +540,27 @@ PrefabInstance:
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.06851709
+      value: 0.0061961114
       objectReference: {fileID: 0}
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.8629658
+      value: 0.9876078
+      objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.22352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.24313727
+      objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.27450982
       objectReference: {fileID: 0}
     - target: {fileID: 827240905822156153, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
