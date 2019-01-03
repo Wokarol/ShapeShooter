@@ -14,7 +14,7 @@ namespace Wokarol.GunSystem
         [Space]
         [SerializeField] float spread = 15;
         [Space]
-        [SerializeField] Cinemachine.CinemachineImpulseSource impulseSource;
+        [SerializeField] Cinemachine.CinemachineImpulseSource impulseSource = null;
 
         private void OnValidate() {
             if (spread < 0) spread *= -1;

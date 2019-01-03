@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class DebugTester : MonoBehaviour
 {
     public DebugBlock FirstBlock { get; private set; } = new DebugBlock("Test");
     private void Start() {
-        EditorUtility.SetDirty(this);
         StartCoroutine(TestCoroutine());
     }
 

@@ -38,7 +38,6 @@ public class EnemyStateAI : MonoBehaviour, IResetable
         TargetCalculation();
         agent.stoppingDistance = stoppingDistance;
         aiMachine?.Tick();
-        //agent.SetDestination(Vector3.zero);
     }
 
     private void TargetCalculation() {
