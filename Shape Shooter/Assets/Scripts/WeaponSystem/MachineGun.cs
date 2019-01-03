@@ -8,9 +8,13 @@ namespace Wokarol.GunSystem
     public class MachineGun : RapidShotGun
     {
         [SerializeField] Pool bulletPool = null;
+        [Space]
         [SerializeField] Animator animator = null;
         [SerializeField] string animationTrigger = "Shot";
+        [Space]
         [SerializeField] float spread = 15;
+        [Space]
+        [SerializeField] Cinemachine.CinemachineImpulseSource impulseSource;
 
         private void OnValidate() {
             if (spread < 0) spread *= -1;
@@ -22,6 +26,7 @@ namespace Wokarol.GunSystem
         }
 
         protected override void Shot() {
+            impulseSource.GenerateImpulse();
             bulletPool.Get(transform.position, Quaternion.FromToRotation(Vector3.up, input.AimDirection) * Quaternion.Euler(0, 0, Random.Range(-spread, spread)));
             if (animator) animator.SetTrigger(animatorShotHash);
         }
