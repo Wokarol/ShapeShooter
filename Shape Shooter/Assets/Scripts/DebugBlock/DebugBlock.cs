@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class DebugBlock
@@ -11,48 +12,42 @@ public class DebugBlock
         Name = name;
     }
 
+    [Conditional("UNITY_ENGINE")]
     public void Clear() {
         Data.Clear();
     }
 
     #region Public functions - Defining
-    public bool Define(string DataNameAndID) {
-        return Define(DataNameAndID, DataNameAndID);
+    [Conditional("UNITY_ENGINE")]
+    public void Define(string DataNameAndID) {
+        Define(DataNameAndID, DataNameAndID);
     }
-    public bool Define(string dataName, string dataID, string value) {
+    [Conditional("UNITY_ENGINE")]
+    public void Define(string dataName, string dataID, string value) {
         if (!Data.ContainsKey(dataID)) {
             Data.Add(dataID, new DataObject(dataName, value));
-            return true;
-        } else {
-            return false;
         }
     }
-    public bool Define(string dataName, string dataID) {
+    [Conditional("UNITY_ENGINE")]
+    public void Define(string dataName, string dataID) {
         if (!Data.ContainsKey(dataID)) {
             Data.Add(dataID, new DataObject(dataName, ""));
-            return true;
-        } else {
-            return false;
         }
     }
-    public bool Undefine(string dataID) {
+    [Conditional("UNITY_ENGINE")]
+    public void Undefine(string dataID) {
         if (Data.ContainsKey(dataID)) {
             Data.Remove(dataID);
-            return true;
-        } else {
-            return false;
         }
     }
     #endregion
     #region Public functions - Managing
-    public bool Change(string dataID, string value) {
+    [Conditional("UNITY_ENGINE")]
+    public void Change(string dataID, string value) {
         if (Data.ContainsKey(dataID)) {
             var data = Data[dataID];
             data.Value = value;
             Data[dataID] = data;
-            return true;
-        } else {
-            return false;
         }
     }
     #endregion
