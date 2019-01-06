@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -439,22 +439,22 @@ PrefabInstance:
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.0009878576
-      objectReference: {fileID: 0}
-    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9980243
-      objectReference: {fileID: 0}
-    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
+      propertyPath: m_NormalizedViewPortRect.width
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.026167989
+      objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.947664
       objectReference: {fileID: 0}
     - target: {fileID: 827240905822156153, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
@@ -578,6 +578,11 @@ PrefabInstance:
     - target: {fileID: 922580634659109438, guid: c3fed7607d4df78469b2fca5ee04c5c9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552248297647821978, guid: c3fed7607d4df78469b2fca5ee04c5c9,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
