@@ -12,29 +12,31 @@ public class DebugBlock
         Name = name;
     }
 
-    [Conditional("UNITY_ENGINE")]
+    [Conditional("UNITY_EDITOR")]
     public void Clear() {
         Data.Clear();
     }
 
     #region Public functions - Defining
-    [Conditional("UNITY_ENGINE")]
+    [Conditional("UNITY_EDITOR")]
     public void Define(string DataNameAndID) {
         Define(DataNameAndID, DataNameAndID);
     }
-    [Conditional("UNITY_ENGINE")]
+    [Conditional("UNITY_EDITOR")]
     public void Define(string dataName, string dataID, string value) {
         if (!Data.ContainsKey(dataID)) {
             Data.Add(dataID, new DataObject(dataName, value));
         }
     }
-    [Conditional("UNITY_ENGINE")]
+    [Conditional("UNITY_EDITOR")]
     public void Define(string dataName, string dataID) {
+
+
         if (!Data.ContainsKey(dataID)) {
             Data.Add(dataID, new DataObject(dataName, ""));
         }
     }
-    [Conditional("UNITY_ENGINE")]
+    [Conditional("UNITY_EDITOR")]
     public void Undefine(string dataID) {
         if (Data.ContainsKey(dataID)) {
             Data.Remove(dataID);
@@ -42,7 +44,7 @@ public class DebugBlock
     }
     #endregion
     #region Public functions - Managing
-    [Conditional("UNITY_ENGINE")]
+    [Conditional("UNITY_EDITOR")]
     public void Change(string dataID, string value) {
         if (Data.ContainsKey(dataID)) {
             var data = Data[dataID];

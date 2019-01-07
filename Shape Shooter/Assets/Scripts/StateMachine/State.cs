@@ -11,10 +11,12 @@ namespace Wokarol.StateSystem
         {
             public State NextState { get; }
             public Func<bool> Evaluator { get; }
+            public Action OnTransitionAction { get; }
 
-            public Transition(Func<bool> evaluator, State nextState) {
+            public Transition(Func<bool> evaluator, State nextState, Action onTransitionAction) {
                 Evaluator = evaluator;
                 NextState = nextState;
+                OnTransitionAction = onTransitionAction;
             }
         }
         public class CantSetToNullException : Exception
@@ -42,14 +44,16 @@ namespace Wokarol.StateSystem
         public State Tick() {
             State processedState = Process();
             if (processedState != null) return processedState;
-            State state = CheckTransitions();
-            return state;
+
+            State nextState = CheckTransitions();
+            return nextState;
         }
         protected abstract State Process();
 
         private State CheckTransitions() {
             foreach (var transition in Transitions) {
                 if (transition.Evaluator()) {
+                    transition.OnTransitionAction?.Invoke();
                     return transition.NextState;
                 }
             }
@@ -61,8 +65,9 @@ namespace Wokarol.StateSystem
         /// </summary>
         /// <param name="evaluator">Transition is active if this function returns true</param>
         /// <param name="nextState">State to transition to</param>
-        public void AddTransition(Func<bool> evaluator, State nextState) {
-            Transitions.Add(new Transition(evaluator, nextState));
+        /// <param name="onTransitionAction">Action that is called when transition is executed</param>
+        public void AddTransition(Func<bool> evaluator, State nextState, Action onTransitionAction = null) {
+            Transitions.Add(new Transition(evaluator, nextState, onTransitionAction));
         }
     }
 }

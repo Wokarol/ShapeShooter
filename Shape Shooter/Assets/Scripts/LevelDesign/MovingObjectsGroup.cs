@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingObjectsGroup : MonoBehaviour
 {
     [System.Serializable]
-    struct MovingObject
+    class MovingObject
     {
         public Transform Target { get => target; set => target = value; }
         public Vector3 MovementOffset { get => movementOffset; set => movementOffset = value; }
@@ -16,16 +16,15 @@ public class MovingObjectsGroup : MonoBehaviour
         [SerializeField] private AnimationCurve lerpCurve;
 
         Vector3 startPos;
-        Vector3 endPos;
+        Vector3 EndPos => startPos + movementOffset;
 
         public void Recenter() {
             startPos = Target.localPosition;
-            endPos = startPos += MovementOffset;
         }
 
         public void Evalute(float time) {
             var curvedTime = LerpCurve.Evaluate(time);
-            Target.localPosition = Vector3.Lerp(startPos, endPos, curvedTime);
+            Target.localPosition = Vector3.Lerp(startPos, EndPos, curvedTime);
         }
     }
 

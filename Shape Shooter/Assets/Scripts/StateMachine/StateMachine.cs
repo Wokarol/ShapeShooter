@@ -48,7 +48,7 @@ namespace Wokarol.StateSystem
 
         public void Tick() {
             var nextState = _currentState?.Tick();
-            if (nextState != null && (_currentState.CanTransitionToSelf || nextState != _currentState)) {
+            if (nextState != null) {
                 ChangeState(nextState);
             }
         }

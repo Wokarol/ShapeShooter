@@ -19,11 +19,13 @@ public class DebugBlockInspector : EditorWindow
     }
 
     private void OnEnable() {
+        FindTarget();
         EditorApplication.playModeStateChanged += EditorApplication_playModeStateChanged;
     }
 
     private void OnDisable() {
         EditorApplication.playModeStateChanged -= EditorApplication_playModeStateChanged;
+        StoreTarget();
     }
 
     private void EditorApplication_playModeStateChanged(PlayModeStateChange obj) {
