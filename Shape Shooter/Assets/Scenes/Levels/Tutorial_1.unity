@@ -346,10 +346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062c128448b1d634497268d35b4d7c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalGroup: {fileID: 0}
-  verticalGroup: {fileID: 0}
-  transition: 0
-  transition2: 0
+  horizontalGroup: {fileID: 1517309125}
+  verticalGroup: {fileID: 1889420874}
+  horizontalFirstPhaseDistance: 0.2
+  verticalFirstPhaseDistance: 0.4
+  timeToStart: 2
 --- !u!4 &551052979
 Transform:
   m_ObjectHideFlags: 0
@@ -907,7 +908,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  LerpValue: 0
+  lerpValue: 0
 --- !u!1 &1721667804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1113,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
-  LerpValue: 0
+  lerpValue: 0
 --- !u!1001 &2010043743
 PrefabInstance:
   m_ObjectHideFlags: 0

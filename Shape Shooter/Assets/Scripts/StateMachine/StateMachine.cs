@@ -9,8 +9,10 @@ namespace Wokarol.StateSystem
     {
         #region DebugBlock
 #if UNITY_EDITOR
+        private const string NoTickWarningID = "StateMachine_Warning_NoTick";
         private const string StateID = "Machine_State";
         private const string DividerID = "Machine_Divider";
+
         public DebugBlock DebugBlock { get; }
 #endif
         #endregion
@@ -24,6 +26,7 @@ namespace Wokarol.StateSystem
             #region DebugBlock
 #if UNITY_EDITOR
             DebugBlock = debugBlock;
+            DebugBlock.Define("Warning", NoTickWarningID, "StateMachine hasn't been ticked through!!!");
             DebugBlock.Define("State", StateID);
             DebugBlock.Define("", DividerID);
 #endif
@@ -51,6 +54,11 @@ namespace Wokarol.StateSystem
             if (nextState != null) {
                 ChangeState(nextState);
             }
+            #region DebugBlock
+#if UNITY_EDITOR
+            DebugBlock.Undefine(NoTickWarningID);
+#endif
+            #endregion
         }
 
         /// <summary>

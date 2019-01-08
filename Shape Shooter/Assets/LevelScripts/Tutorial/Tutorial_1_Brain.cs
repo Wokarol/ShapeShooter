@@ -7,64 +7,53 @@ namespace Wokarol.LevelBrains
 {
     public class Tutorial_1_Brain : MonoBehaviour
     {
+        private const string TimeID = "Brain_Time";
         StateMachine levelMachine;
-        StateMachine levelMachine2;
         public DebugBlock BrainDebugBlock { get; } = new DebugBlock("Level Brain");
-        public DebugBlock BrainDebugBlock2 { get; } = new DebugBlock("Level Brain with Sequencer");
-
 
         [Header("Moving Groups")]
         [SerializeField] MovingObjectsGroup horizontalGroup;
         [SerializeField] MovingObjectsGroup verticalGroup;
 
-        [SerializeField] bool transition = false;
-        [SerializeField] bool transition2 = false;
+        [Header("Moving Distances")]
+        [SerializeField] float horizontalFirstPhaseDistance = 0.14f;
+        [SerializeField] float verticalFirstPhaseDistance = 0.14f;
+
+        [Header("Timming")]
+        [SerializeField] float timeToStart = 15f;
 
         private void Awake() {
-            // Without Sequencer
-            var sequence0 = new DebugState("N00");
-            var sequence1 = new DebugState("N01");
-            var sequence2 = new DebugState("N02");
-            var sequence3 = new DebugState("N03");
-            var sequence4 = new DebugState("N04");
-            sequence0.AddTransition(() => transition, sequence1, () => transition = false);
-            sequence1.AddTransition(() => transition, sequence2, () => transition = false);
-            sequence2.AddTransition(() => transition, sequence3, () => transition = false);
-            sequence3.AddTransition(() => transition, sequence4, () => transition = false);
-            levelMachine = new StateMachine(sequence0, BrainDebugBlock);
+            BrainDebugBlock.Define("Time", TimeID);
 
-            // With Sequencer
             var builder = new SequenceBuilder();
-            builder.Add(new DebugState("N00"), () => transition2, () => transition2 = false);
-            builder.Add(new DebugState("N01"), () => transition2, () => transition2 = false);
-            builder.Add(new DebugState("N02"), () => transition2, () => transition2 = false);
-            builder.Add(new DebugState("N03"), () => transition2, () => transition2 = false);
-            builder.Add(new DebugState("N04"), () => transition2, () => transition2 = false);
-            levelMachine2 = new StateMachine(builder.Compose(), BrainDebugBlock2);
+
+            builder.Add(new NullState(), () => Time.time > timeToStart);
+            builder.Add(new MoveObjectState(horizontalFirstPhaseDistance, horizontalGroup, 1), () => Time.time > timeToStart * 2f);
+            builder.Add(new MoveObjectState(verticalFirstPhaseDistance, verticalGroup, 1), () => Time.time > timeToStart * 3f);
+            builder.Add(new MoveObjectsState(1, new MovingObjectsGroup[]{ verticalGroup, horizontalGroup }, 1));
+
+            levelMachine = new StateMachine(builder.Compose(), BrainDebugBlock);
         }
 
         private void Update() {
+            BrainDebugBlock.Change(TimeID, Time.time.ToString("F2"));
             levelMachine?.Tick();
-            levelMachine2?.Tick();
         }
     }
 
-    class DebugState : State
+    class NullState : State
     {
-        string data = "";
-        private const string DataID = "DebugState_Data";
-        public override bool CanTransitionToSelf => false;
-        public DebugState(string data) {
-            this.data = data;
-        }
+        public override bool CanTransitionToSelf => true;
+
         public override void Enter(StateMachine stateMachine) {
-            stateMachine.DebugBlock.Define("Data", DataID, data);
         }
+
         public override void Exit(StateMachine stateMachine) {
-            stateMachine.DebugBlock.Undefine(DataID);
         }
+
         protected override State Process() {
             return null;
         }
     }
+
 }
