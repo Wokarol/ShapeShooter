@@ -18,6 +18,7 @@ namespace Wokarol.LevelBrains
         [SerializeField] MovingObjectsGroup verticalGroup;
 
         [SerializeField] bool transition = false;
+        [SerializeField] bool transition2 = false;
 
         private void Awake() {
             // Without Sequencer
@@ -34,16 +35,17 @@ namespace Wokarol.LevelBrains
 
             // With Sequencer
             var builder = new SequenceBuilder();
-            builder.Add(new DebugState("N00"), () => transition, () => transition = false);
-            builder.Add(new DebugState("N01"), () => transition, () => transition = false);
-            builder.Add(new DebugState("N02"), () => transition, () => transition = false);
-            builder.Add(new DebugState("N03"), () => transition, () => transition = false);
-            builder.Add(new DebugState("N04"), () => transition, () => transition = false);
+            builder.Add(new DebugState("N00"), () => transition2, () => transition2 = false);
+            builder.Add(new DebugState("N01"), () => transition2, () => transition2 = false);
+            builder.Add(new DebugState("N02"), () => transition2, () => transition2 = false);
+            builder.Add(new DebugState("N03"), () => transition2, () => transition2 = false);
+            builder.Add(new DebugState("N04"), () => transition2, () => transition2 = false);
             levelMachine2 = new StateMachine(builder.Compose(), BrainDebugBlock2);
         }
 
         private void Update() {
             levelMachine?.Tick();
+            levelMachine2?.Tick();
         }
     }
 

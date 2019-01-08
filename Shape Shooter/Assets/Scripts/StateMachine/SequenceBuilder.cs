@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Wokarol.StateSystem
 {
@@ -20,6 +21,7 @@ namespace Wokarol.StateSystem
         public List<SequneceState> States { get; } = new List<SequneceState>();
 
         public State Compose() {
+            Debug.Log($"{States.Count}");
             for (int i = 0; i < States.Count - 1; i++) {
                 States[i].State.AddTransition(States[i].Evaluator, States[i + 1].State, States[i].OnTransition);
             }

@@ -349,6 +349,7 @@ MonoBehaviour:
   horizontalGroup: {fileID: 0}
   verticalGroup: {fileID: 0}
   transition: 0
+  transition2: 0
 --- !u!4 &551052979
 Transform:
   m_ObjectHideFlags: 0
