@@ -16,7 +16,7 @@ namespace Wokarol {
 					ConstantValue = value;
 				} else {
 					ScriptableVariable.Value = value;
-				}
+                }
 			}
 		}
 
@@ -24,6 +24,5 @@ namespace Wokarol {
 
 		public VarT ScriptableVariable;
 		public T ConstantValue;
-
-	}
+    }
 }

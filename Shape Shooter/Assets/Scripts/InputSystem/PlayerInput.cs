@@ -13,6 +13,8 @@ namespace Wokarol.InputSystem
         [SerializeField] bool useAutoAimForMouse = false;
         [SerializeField] LayerMask autoAimLayer = 0;
         [Range(0.7f, 1f)][SerializeField] float minDotProduct = 0.93f;
+        [Header("Output Data")]
+        [SerializeField] BoolVariableReference UsingPad;
 
         bool usingPad = false;
         Vector3 oldMousePos = Vector3.zero;
@@ -43,6 +45,8 @@ namespace Wokarol.InputSystem
             Debug.DrawRay(transform.position, AimDirection * 5f, Color.green);
 
             Shoot = Input.GetMouseButton(0) || Input.GetButton("Shoot");
+
+            UsingPad.Value = usingPad;
         }
 
         private void CalculateAimAssist() {

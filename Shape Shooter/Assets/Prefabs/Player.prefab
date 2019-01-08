@@ -277,6 +277,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   minDotProduct: 0.85
+  UsingPad:
+    UseConstant: 0
+    ScriptableVariable: {fileID: 11400000, guid: 0a8568a0dd48dcc48bf59526b24ffe9f,
+      type: 2}
+    ConstantValue: 0
 --- !u!114 &8714523163867572178
 MonoBehaviour:
   m_ObjectHideFlags: 0

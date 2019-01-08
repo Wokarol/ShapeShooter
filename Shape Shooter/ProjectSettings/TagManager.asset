@@ -20,7 +20,7 @@ TagManager:
   - 
   - Map
   - 
-  - 
+  - Objectives
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Bullets
     uniqueID: 3091428461
+    locked: 0
+  - name: Foreground
+    uniqueID: 3182778415
     locked: 0
