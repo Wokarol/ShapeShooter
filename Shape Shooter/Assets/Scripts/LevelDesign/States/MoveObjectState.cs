@@ -11,7 +11,8 @@ public class MoveObjectState : State
     MovingObjectsGroup group;
     private float speed;
 
-    public MoveObjectState(float target, MovingObjectsGroup group, float speed) {
+    public MoveObjectState(string name, float target, MovingObjectsGroup group, float speed) {
+        Name = name;
         this.target = target;
         this.group = group;
         this.speed = speed;
@@ -37,7 +38,8 @@ public class MoveObjectsState : State
     MovingObjectsGroup[] groups;
     private float speed;
 
-    public MoveObjectsState(float target, MovingObjectsGroup[] groups, float speed) {
+    public MoveObjectsState(string name, float target, MovingObjectsGroup[] groups, float speed) {
+        Name = name;
         this.target = target;
         this.groups = groups;
         this.speed = speed;

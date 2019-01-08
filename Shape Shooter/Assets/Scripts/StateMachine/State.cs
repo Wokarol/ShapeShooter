@@ -37,6 +37,7 @@ namespace Wokarol.StateSystem
             set => transitions = value ?? throw new CantSetToNullException();
         }
         public abstract bool CanTransitionToSelf { get; }
+        public virtual string Name { get; protected set; } = "No name setted";
 
         public abstract void Enter(StateMachine stateMachine);
         public abstract void Exit(StateMachine stateMachine);

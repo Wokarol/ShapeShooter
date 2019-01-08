@@ -3,6 +3,10 @@ using Wokarol.StateSystem;
 
 public class WaitState : State
 {
+    public WaitState(string name) {
+        Name = name;
+    }
+
     public override bool CanTransitionToSelf => false;
 
     public override void Enter(StateMachine stateMachine) {

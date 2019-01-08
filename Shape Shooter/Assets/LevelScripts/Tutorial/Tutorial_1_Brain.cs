@@ -12,8 +12,8 @@ namespace Wokarol.LevelBrains
         public DebugBlock BrainDebugBlock { get; } = new DebugBlock("Level Brain");
 
         [Header("Moving Groups")]
-        [SerializeField] MovingObjectsGroup horizontalGroup;
-        [SerializeField] MovingObjectsGroup verticalGroup;
+        [SerializeField] MovingObjectsGroup horizontalGroup = null;
+        [SerializeField] MovingObjectsGroup verticalGroup = null;
 
         [Header("Moving Distances")]
         [SerializeField] float horizontalFirstPhaseDistance = 0.14f;
@@ -27,10 +27,10 @@ namespace Wokarol.LevelBrains
 
             var builder = new SequenceBuilder();
 
-            builder.Add(new NullState(), () => Time.time > timeToStart);
-            builder.Add(new MoveObjectState(horizontalFirstPhaseDistance, horizontalGroup, 1), () => Time.time > timeToStart * 2f);
-            builder.Add(new MoveObjectState(verticalFirstPhaseDistance, verticalGroup, 1), () => Time.time > timeToStart * 3f);
-            builder.Add(new MoveObjectsState(1, new MovingObjectsGroup[]{ verticalGroup, horizontalGroup }, 1));
+            builder.Add(new WaitState("Wait for time"), () => Time.time > timeToStart);
+            builder.Add(new MoveObjectState("Moving horizontal space",horizontalFirstPhaseDistance, horizontalGroup, 1), () => Time.time > timeToStart * 2f);
+            builder.Add(new MoveObjectState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1), () => Time.time > timeToStart * 3f);
+            builder.Add(new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[]{ verticalGroup, horizontalGroup }, 1));
 
             levelMachine = new StateMachine(builder.Compose(), BrainDebugBlock);
         }
@@ -40,20 +40,4 @@ namespace Wokarol.LevelBrains
             levelMachine?.Tick();
         }
     }
-
-    class NullState : State
-    {
-        public override bool CanTransitionToSelf => true;
-
-        public override void Enter(StateMachine stateMachine) {
-        }
-
-        public override void Exit(StateMachine stateMachine) {
-        }
-
-        protected override State Process() {
-            return null;
-        }
-    }
-
 }

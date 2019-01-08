@@ -22,7 +22,8 @@ public class AttackingState : State
     private WaitState _wait;
     private float _countdown;
 
-    public AttackingState(Target target, NavMeshAgent agent, WaitState wait) {
+    public AttackingState(string name, Target target, NavMeshAgent agent, WaitState wait) {
+        Name = name;
         _target = target;
         _agent = agent;
         _wait = wait;

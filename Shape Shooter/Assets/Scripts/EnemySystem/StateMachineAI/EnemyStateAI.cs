@@ -25,8 +25,8 @@ public class EnemyStateAI : MonoBehaviour, IResetable
         agent = GetComponent<NavMeshAgent>();
         AIDebugBlock.Define("Target", TargetID);
 
-        var wait = new WaitState();
-        var attacking = new AttackingState(target, agent, wait);
+        var wait = new WaitState("Wait in place");
+        var attacking = new AttackingState("Attack targte", target, agent, wait);
 
         wait.AddTransition(() => target.Transform != null, attacking);
         attacking.AddTransition(() => target.Transform == null, wait);
