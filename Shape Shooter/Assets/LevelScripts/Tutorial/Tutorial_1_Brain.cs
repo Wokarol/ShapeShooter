@@ -46,25 +46,34 @@ namespace Wokarol.LevelBrains
         private void Awake() {
             BrainDebugBlock.Define("Time", TimeID);
 
-            var builder = new SequenceBuilder();
-
             MovementHelper.SetActive(false);
             ShootingLevelCamera.SetActive(false);
 
-            builder.Add(new WaitState("Wait for time"), 
-                (s) => Time.time > timeToStart, 
-                () => MovementHelper.SetActive(true));
-            builder.Add(new MoveObjectsState("Moving horizontal space",horizontalFirstPhaseDistance, horizontalGroup, 1), 
-                (s) => (s as MoveObjectsState).Finished && targetLeft.Achieved && targetRight.Achieved);
-            builder.Add(new MoveObjectsState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1), 
-                (s) => (s as MoveObjectsState).Finished && targetUp.Achieved && targetDown.Achieved, 
-                () => MovementHelper.SetActive(false));
-            builder.Add(new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[] { verticalGroup, horizontalGroup }, 1),
-                (s) => (s as MoveObjectsState).Finished, 
-                () => {MovingLevelCamera.SetActive(false); ShootingLevelCamera.SetActive(true); });
-            builder.Add(new TeleportState(MovingLevelTeleporter, ShootingLevelTeleporter.transform.position));
+            // States
+            var waitForTime = new WaitState("Wait for time");
+            var movingHorizontal = new MoveObjectsState("Moving horizontal space", horizontalFirstPhaseDistance, horizontalGroup, 1);
+            var movingVertical = new MoveObjectsState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1);
+            var movingBoth = new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[] { verticalGroup, horizontalGroup }, 1);
+            var teleport = new TeleportState(MovingLevelTeleporter, ShootingLevelTeleporter.transform.position);
 
-            levelMachine = new StateMachine(builder.Compose(), BrainDebugBlock);
+            // Transitions
+            waitForTime.AddTransition(
+                (s) => Time.time > timeToStart, 
+                movingHorizontal, 
+                () => MovementHelper.SetActive(true));
+            movingHorizontal.AddTransition(
+                (s) => (s as MoveObjectsState).Finished && targetLeft.Achieved && targetRight.Achieved,
+                movingVertical);
+            movingVertical.AddTransition(
+                (s) => (s as MoveObjectsState).Finished && targetUp.Achieved && targetDown.Achieved,
+                movingBoth,
+                () => MovementHelper.SetActive(false));
+            movingBoth.AddTransition(
+                (s) => (s as MoveObjectsState).Finished,
+                teleport,
+                 () => { MovingLevelCamera.SetActive(false); ShootingLevelCamera.SetActive(true); });
+
+            levelMachine = new StateMachine(waitForTime, BrainDebugBlock);
         }
 
         private void Update() {
