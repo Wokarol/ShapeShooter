@@ -8,14 +8,14 @@ namespace Wokarol.StateSystem
     {
         public class SequneceState
         {
-            public SequneceState(State state, Func<State, bool> evaluator, Action onTransition) {
+            public SequneceState(State state, Func<bool> evaluator, Action onTransition) {
                 State = state;
                 Evaluator = evaluator;
                 OnTransition = onTransition;
             }
 
             public State State { get; }
-            public Func<State, bool> Evaluator { get; }
+            public Func<bool> Evaluator { get; }
             public Action OnTransition { get; }
         }
         public List<SequneceState> States { get; } = new List<SequneceState>();
@@ -34,7 +34,7 @@ namespace Wokarol.StateSystem
             return States[0].State;
         }
 
-        public void Add(State state, Func<State, bool> evaluator = null, Action onTransition = null) {
+        public void Add(State state, Func<bool> evaluator = null, Action onTransition = null) {
             States.Add(new SequneceState(state, evaluator, onTransition));
         }
     }

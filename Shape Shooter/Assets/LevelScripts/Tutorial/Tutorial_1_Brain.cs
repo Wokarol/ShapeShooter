@@ -58,24 +58,23 @@ namespace Wokarol.LevelBrains
             var movingHorizontal = new MoveObjectsState("Moving horizontal space", horizontalFirstPhaseDistance, horizontalGroup, 1);
             var movingVertical = new MoveObjectsState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1);
             var movingBoth = new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[] { verticalGroup, horizontalGroup }, 1);
-            var teleport = new TeleportState(MovingLevelTeleporter, ShootingLevelTeleporter.transform.position);
+            var teleport = new TeleportState(MovingLevelTeleporter, ShootingLevelTeleporter.transform.position, () => { MovingLevelCamera.SetActive(false); ShootingLevelCamera.SetActive(true); });
 
             // Transitions
             waitForTime.AddTransition(
-                (s) => Time.time > timeToStart,
+                () => Time.time > timeToStart,
                 movingHorizontal,
                 () => MovementHelper.SetActive(true));
             movingHorizontal.AddTransition(
-                (s) => (s as MoveObjectsState).Finished && targetLeft.Achieved && targetRight.Achieved,
+                () => movingHorizontal.Finished && targetLeft.Achieved && targetRight.Achieved,
                 movingVertical);
             movingVertical.AddTransition(
-                (s) => (s as MoveObjectsState).Finished && targetUp.Achieved && targetDown.Achieved,
+                () => movingVertical.Finished && targetUp.Achieved && targetDown.Achieved,
                 movingBoth,
                 () => MovementHelper.SetActive(false));
             movingBoth.AddTransition(
-                (s) => (s as MoveObjectsState).Finished,
-                teleport,
-                 () => { MovingLevelCamera.SetActive(false); ShootingLevelCamera.SetActive(true); });
+                () => movingBoth.Finished,
+                teleport);
 
             switch (startState) {
                 case LevelState.Moving:

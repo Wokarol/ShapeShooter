@@ -10,10 +10,10 @@ namespace Wokarol.StateSystem
         public struct Transition
         {
             public State NextState { get; }
-            public Func<State, bool> Evaluator { get; }
+            public Func<bool> Evaluator { get; }
             public Action OnTransitionAction { get; }
 
-            public Transition(Func<State, bool> evaluator, State nextState, Action onTransitionAction) {
+            public Transition(Func<bool> evaluator, State nextState, Action onTransitionAction) {
                 Evaluator = evaluator;
                 NextState = nextState;
                 OnTransitionAction = onTransitionAction;
@@ -53,7 +53,7 @@ namespace Wokarol.StateSystem
 
         private State CheckTransitions() {
             foreach (var transition in Transitions) {
-                if (transition.Evaluator(this)) {
+                if (transition.Evaluator()) {
                     transition.OnTransitionAction?.Invoke();
                     return transition.NextState;
                 }
@@ -67,7 +67,7 @@ namespace Wokarol.StateSystem
         /// <param name="evaluator">Transition is active if this function returns true</param>
         /// <param name="nextState">State to transition to</param>
         /// <param name="onTransitionAction">Action that is called when transition is executed</param>
-        public void AddTransition(Func<State, bool> evaluator, State nextState, Action onTransitionAction = null) {
+        public void AddTransition(Func<bool> evaluator, State nextState, Action onTransitionAction = null) {
             Transitions.Add(new Transition(evaluator, nextState, onTransitionAction));
         }
     }

@@ -28,8 +28,8 @@ public class EnemyStateAI : MonoBehaviour, IResetable
         var wait = new WaitState("Wait in place");
         var attacking = new AttackingState("Attack targte", target, agent, wait);
 
-        wait.AddTransition((s) => target.Transform != null, attacking);
-        attacking.AddTransition((s) => target.Transform == null, wait);
+        wait.AddTransition(() => target.Transform != null, attacking);
+        attacking.AddTransition(() => target.Transform == null, wait);
 
         aiMachine = new StateMachine(wait, AIDebugBlock);
     }
