@@ -20,8 +20,8 @@ namespace Wokarol.LevelBrains
         [SerializeField] Teleporter ShootingLevelTeleporter = null;
 
         [Header("Cameras")]
-        [SerializeField] GameObject MovingLevelCamera;
-        [SerializeField] GameObject ShootingLevelCamera;
+        [SerializeField] GameObject MovingLevelCamera = null;
+        [SerializeField] GameObject ShootingLevelCamera = null;
 
         [Header("Moving Groups")]
         [SerializeField] MovingObjectsGroup horizontalGroup = null;
@@ -43,6 +43,10 @@ namespace Wokarol.LevelBrains
         [Header("Timming")]
         [SerializeField] float timeToStart = 15f;
 
+        [Header("Debug")]
+        [SerializeField] LevelState startState = LevelState.Moving;
+        enum LevelState { Moving/*, Shooting*/ }
+
         private void Awake() {
             BrainDebugBlock.Define("Time", TimeID);
 
@@ -58,8 +62,8 @@ namespace Wokarol.LevelBrains
 
             // Transitions
             waitForTime.AddTransition(
-                (s) => Time.time > timeToStart, 
-                movingHorizontal, 
+                (s) => Time.time > timeToStart,
+                movingHorizontal,
                 () => MovementHelper.SetActive(true));
             movingHorizontal.AddTransition(
                 (s) => (s as MoveObjectsState).Finished && targetLeft.Achieved && targetRight.Achieved,
@@ -73,7 +77,14 @@ namespace Wokarol.LevelBrains
                 teleport,
                  () => { MovingLevelCamera.SetActive(false); ShootingLevelCamera.SetActive(true); });
 
-            levelMachine = new StateMachine(waitForTime, BrainDebugBlock);
+            switch (startState) {
+                case LevelState.Moving:
+                    levelMachine = new StateMachine(waitForTime, BrainDebugBlock);
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         private void Update() {

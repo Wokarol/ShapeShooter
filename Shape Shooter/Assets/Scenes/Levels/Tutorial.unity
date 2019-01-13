@@ -821,6 +821,7 @@ MonoBehaviour:
   targetRight: {fileID: 1160803168}
   MovementHelper: {fileID: 1189971846}
   timeToStart: 1
+  startState: 0
 --- !u!4 &551052979
 Transform:
   m_ObjectHideFlags: 0
