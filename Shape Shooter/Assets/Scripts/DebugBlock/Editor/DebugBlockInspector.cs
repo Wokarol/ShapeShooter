@@ -79,7 +79,7 @@ public class DebugBlockInspector : EditorWindow
 
             foreach (var property in properties) {
                 if (property.PropertyType == typeof(DebugBlock)) {
-                    DebugBlock block = (DebugBlock)property.GetValue(target);
+                    DebugBlock block = (DebugBlock)property.GetValue(target as object);
                     if (block == null) EditorGUILayout.HelpBox($"{property.Name} is null!!!", MessageType.Error);
                     blocksWithNames.Add(block);
                 }

@@ -12,6 +12,13 @@ namespace Wokarol.LevelBrains
         StateMachine levelMachine;
         public DebugBlock BrainDebugBlock { get; } = new DebugBlock("Level Brain");
 
+        [Header("Scenes")]
+        [SerializeField] StringVariable nextScene;
+
+        [Header("Teleports")]
+        [SerializeField] Teleporter MovingLevel;
+        [SerializeField] Teleporter ShootingLevel;
+
         [Header("Moving Groups")]
         [SerializeField] MovingObjectsGroup horizontalGroup = null;
         [SerializeField] MovingObjectsGroup verticalGroup = null;
@@ -26,6 +33,9 @@ namespace Wokarol.LevelBrains
         [SerializeField] Objective targetLeft = null;
         [SerializeField] Objective targetRight = null;
 
+        [Header("Helper")]
+        [SerializeField] GameObject MovementHelper = null;
+
         [Header("Timming")]
         [SerializeField] float timeToStart = 15f;
 
@@ -34,10 +44,18 @@ namespace Wokarol.LevelBrains
 
             var builder = new SequenceBuilder();
 
-            builder.Add(new WaitState("Wait for time"), () => Time.time > timeToStart);
-            builder.Add(new MoveObjectState("Moving horizontal space",horizontalFirstPhaseDistance, horizontalGroup, 1), () => targetLeft.Achieved && targetRight.Achieved);
-            builder.Add(new MoveObjectState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1), () => targetUp.Achieved && targetDown.Achieved);
+            MovementHelper.SetActive(false);
+
+            builder.Add(new WaitState("Wait for time"), 
+                (s) => Time.time > timeToStart, 
+                () => MovementHelper.SetActive(true));
+            builder.Add(new MoveObjectsState("Moving horizontal space",horizontalFirstPhaseDistance, horizontalGroup, 1), 
+                (s) => (s as MoveObjectsState).Finished && targetLeft.Achieved && targetRight.Achieved);
+            builder.Add(new MoveObjectsState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1), 
+                (s) => (s as MoveObjectsState).Finished && targetUp.Achieved && targetDown.Achieved, 
+                () => MovementHelper.SetActive(false));
             builder.Add(new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[]{ verticalGroup, horizontalGroup }, 1));
+
 
             levelMachine = new StateMachine(builder.Compose(), BrainDebugBlock);
         }

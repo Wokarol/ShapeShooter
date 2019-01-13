@@ -9,14 +9,14 @@ namespace Wokarol
 	public class StartScene : MonoBehaviour
 	{
 		// Variables
-		[SerializeField] string nameOfTheStartScene = "";
+		[SerializeField] StringVariable nameOfTheStartScene;
 
 		// Functions
 		private void Start ()
 		{
 			Debug.Log("Starting scene process started");
 			if (SceneManager.sceneCount == 1) {
-				ScenesController.Instance.ChangeScene/*Imidiate*/(nameOfTheStartScene);
+				ScenesController.Instance.ChangeScene/*Imidiate*/(nameOfTheStartScene.Value);
 			}
 		}
 	}

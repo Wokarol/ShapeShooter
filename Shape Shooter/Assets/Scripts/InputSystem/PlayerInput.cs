@@ -14,7 +14,7 @@ namespace Wokarol.InputSystem
         [SerializeField] LayerMask autoAimLayer = 0;
         [Range(0.7f, 1f)][SerializeField] float minDotProduct = 0.93f;
         [Header("Output Data")]
-        [SerializeField] BoolVariableReference UsingPad;
+        [SerializeField] BoolVariableReference UsingPad = new BoolVariableReference();
 
         bool usingPad = false;
         Vector3 oldMousePos = Vector3.zero;

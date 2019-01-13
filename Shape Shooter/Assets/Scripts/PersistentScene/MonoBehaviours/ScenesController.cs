@@ -47,7 +47,23 @@ namespace Wokarol
 			StartCoroutine(ChangeSceneCoroutine(nameOfNewScene, () => { Debug.Log($"Finished loading"); }));
 		}
 
-		IEnumerator ChangeSceneCoroutine (string scene, System.Action callback)
+        public void ChangeSceneQuick(string nameOfNewScene) {
+            var oldFade = fadeTime;
+            fadeTime = 0;
+            Debug.Log($"Finding {nameOfNewScene}");
+            if (usePersistentScene && SceneManager.GetSceneByName(nameOfNewScene).buildIndex == 0) {
+                Debug.LogWarning("Persistent Scene shouldn't be loaded");
+                return;
+            }
+            if (SceneUtility.GetBuildIndexByScenePath(nameOfNewScene) < 0) {
+                throw new System.Exception($"There's no {nameOfNewScene} scene");
+            }
+
+            Debug.Log($"{nameOfNewScene} is being loaded");
+            StartCoroutine(ChangeSceneCoroutine(nameOfNewScene, () => { Debug.Log($"Finished loading"); fadeTime = oldFade; }));
+        }
+
+        IEnumerator ChangeSceneCoroutine (string scene, System.Action callback)
 		{
 			yield return StartCoroutine(Fade(1));
 			yield return StartCoroutine(UnloadActiveScene());
