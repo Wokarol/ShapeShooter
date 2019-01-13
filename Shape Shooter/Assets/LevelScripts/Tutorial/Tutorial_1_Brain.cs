@@ -16,8 +16,12 @@ namespace Wokarol.LevelBrains
         [SerializeField] StringVariable nextScene;
 
         [Header("Teleports")]
-        [SerializeField] Teleporter MovingLevel;
-        [SerializeField] Teleporter ShootingLevel;
+        [SerializeField] Teleporter MovingLevelTeleporter = null;
+        [SerializeField] Teleporter ShootingLevelTeleporter = null;
+
+        [Header("Cameras")]
+        [SerializeField] GameObject MovingLevelCamera;
+        [SerializeField] GameObject ShootingLevelCamera;
 
         [Header("Moving Groups")]
         [SerializeField] MovingObjectsGroup horizontalGroup = null;
@@ -45,6 +49,7 @@ namespace Wokarol.LevelBrains
             var builder = new SequenceBuilder();
 
             MovementHelper.SetActive(false);
+            ShootingLevelCamera.SetActive(false);
 
             builder.Add(new WaitState("Wait for time"), 
                 (s) => Time.time > timeToStart, 
@@ -54,8 +59,10 @@ namespace Wokarol.LevelBrains
             builder.Add(new MoveObjectsState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1), 
                 (s) => (s as MoveObjectsState).Finished && targetUp.Achieved && targetDown.Achieved, 
                 () => MovementHelper.SetActive(false));
-            builder.Add(new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[]{ verticalGroup, horizontalGroup }, 1));
-
+            builder.Add(new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[] { verticalGroup, horizontalGroup }, 1),
+                (s) => (s as MoveObjectsState).Finished, 
+                () => {MovingLevelCamera.SetActive(false); ShootingLevelCamera.SetActive(true); });
+            builder.Add(new TeleportState(MovingLevelTeleporter, ShootingLevelTeleporter.transform.position));
 
             levelMachine = new StateMachine(builder.Compose(), BrainDebugBlock);
         }

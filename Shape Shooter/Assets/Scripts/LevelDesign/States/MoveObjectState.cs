@@ -42,10 +42,8 @@ namespace Wokarol.LevelDesign
                 Finished = Finished && Mathf.Abs(group.LerpValue - target) < float.Epsilon;
             }
             if (Finished) {
-                Debug.Log($"{Name} Finished, returning {(ExitState != null?ExitState.Name:"null")}");
                 return ExitState;
             } else {
-                Debug.Log($"{Name} Not finished");
                 return null;
             }
         }
