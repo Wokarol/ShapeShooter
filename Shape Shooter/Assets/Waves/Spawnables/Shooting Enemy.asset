@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20c55cc3ba0954e4493b569365eb8107, type: 3}
-  m_Name: Standard Enemy
+  m_Name: Shooting Enemy
   m_EditorClassIdentifier: 
-  spawnableObject: {fileID: 3653787253703803317, guid: bcf049a376c7e684682b05bb517ff10d,
+  spawnableObject: {fileID: 1239148123875256380, guid: 2e8356bd55ac4da48a04f77a876ab8df,
     type: 3}
-  debugName: Standard Enemy
-  color: {r: 0.990566, g: 0.78182524, b: 0.36912602, a: 1}
-  shape: 0
+  debugName: Shooter
+  color: {r: 1, g: 0.3820755, b: 0.3820755, a: 1}
+  shape: 1

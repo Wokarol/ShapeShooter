@@ -901,7 +901,7 @@ MonoBehaviour:
   movementHelper: {fileID: 1189971846}
   timeToStart: 1
   shootingLevelSpawner: {fileID: 1886413542}
-  startState: 0
+  startState: 1
 --- !u!4 &551052979
 Transform:
   m_ObjectHideFlags: 0

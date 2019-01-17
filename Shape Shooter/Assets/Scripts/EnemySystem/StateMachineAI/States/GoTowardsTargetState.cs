@@ -19,14 +19,14 @@ public class GoTowardsTargetState : State
 
     private Target _target;
     private NavMeshAgent _agent;
-    private WaitState _wait;
     private float _countdown;
+    private bool _hardstop;
 
-    public GoTowardsTargetState(string name, Target target, NavMeshAgent agent, WaitState wait) {
+    public GoTowardsTargetState(string name, Target target, NavMeshAgent agent, bool  hardstop) {
         Name = name;
         _target = target;
         _agent = agent;
-        _wait = wait;
+        _hardstop = hardstop;
     }
     protected override void EnterProcess(StateMachine stateMachine) {
         #region DebugBlock
@@ -40,7 +40,11 @@ public class GoTowardsTargetState : State
     }
 
     protected override void ExitProcess(StateMachine stateMachine) {
-        _agent.SetDestination(_agent.transform.position + _agent.velocity);
+        if (_hardstop)
+            _agent.SetDestination(_agent.transform.position);
+        else
+            _agent.SetDestination(_agent.transform.position + _agent.velocity);
+
         #region DebugBlock
 #if UNITY_EDITOR
         _debugBlock.Undefine(CountdownID);

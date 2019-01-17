@@ -15,11 +15,12 @@ MonoBehaviour:
   spawnables:
   - {fileID: 11400000, guid: accaa392f8e32ca4ab50fe7c92f8eb20, type: 2}
   - {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  <CurrentWave>k__BackingField: {fileID: 0}
+  <CurrentWave>k__BackingField: {fileID: 11400000, guid: 4fbc8ac9e90dac14a9efd3e528678dc8,
+    type: 2}

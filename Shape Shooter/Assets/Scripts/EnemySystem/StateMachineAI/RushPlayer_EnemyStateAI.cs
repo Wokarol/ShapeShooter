@@ -6,72 +6,75 @@ using UnityEngine.AI;
 using Wokarol.AI;
 using Wokarol.StateSystem;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class RushPlayer_EnemyStateAI : MonoBehaviour, IResetable
+namespace Wokarol.AI.EnemyBrains
 {
-    private const string TargetID = "AI_Target";
+    [RequireComponent(typeof(NavMeshAgent))]
+    public class RushPlayer_EnemyStateAI : MonoBehaviour, IResetable
+    {
+        private const string TargetID = "AI_Target";
 
-    public DebugBlock AIDebugBlock { get; } = new DebugBlock("AI");
+        public DebugBlock AIDebugBlock { get; } = new DebugBlock("AI");
 
-    StateMachine aiMachine;
-    [SerializeField] Target target = new Target();
-    NavMeshAgent agent;
+        StateMachine aiMachine;
+        Target target = new Target();
+        NavMeshAgent agent;
 
-    [SerializeField] LayerMask targetLayer = 0;
-    [SerializeField] float distance = 10;
-    [SerializeField] float stoppingDistance = 0.2f;
+        [SerializeField] LayerMask targetLayer = 0;
+        [SerializeField] float distance = 10;
+        [SerializeField] float stoppingDistance = 0.2f;
 
-    private void Start() {
-        agent = GetComponent<NavMeshAgent>();
-        AIDebugBlock.Define("Target", TargetID);
+        private void Start() {
+            agent = GetComponent<NavMeshAgent>();
+            AIDebugBlock.Define("Target", TargetID);
 
-        var wait = new WaitState("Wait in place");
-        var attacking = new GoTowardsTargetState("Attack targte", target, agent, wait);
+            var wait = new WaitState("Wait in place");
+            var attacking = new GoTowardsTargetState("Attack targte", target, agent, false);
 
-        wait.AddTransition(() => target.Transform != null, attacking);
-        attacking.AddTransition(() => target.Transform == null, wait);
+            wait.AddTransition(() => target.Transform != null, attacking);
+            attacking.AddTransition(() => target.Transform == null, wait);
 
-        aiMachine = new StateMachine(wait, AIDebugBlock);
-    }
+            aiMachine = new StateMachine(wait, AIDebugBlock);
+        }
 
-    private void Update() {
-        TargetCalculation();
-        agent.stoppingDistance = stoppingDistance;
-        aiMachine?.Tick();
-    }
+        private void Update() {
+            TargetCalculation();
+            agent.stoppingDistance = stoppingDistance;
+            aiMachine?.Tick();
+        }
 
-    private void TargetCalculation() {
-        if (!target.Transform) {
-            var collider = Physics2D.OverlapCircle(transform.position, distance, targetLayer);
-            if (collider) {
-                target.Transform = collider.transform;
-                AIDebugBlock.Change(TargetID, target.Transform.name);
+        private void TargetCalculation() {
+            if (!target.Transform) {
+                var collider = Physics2D.OverlapCircle(transform.position, distance, targetLayer);
+                if (collider) {
+                    target.Transform = collider.transform;
+                    AIDebugBlock.Change(TargetID, target.Transform.name);
+                }
+            }
+            if (target.Transform) {
+                float sqrDist = Vector2.SqrMagnitude(transform.position - target.Transform.position);
+                if (sqrDist > (distance * distance)) {
+                    target.Transform = null;
+                    AIDebugBlock.Change(TargetID, "null");
+                }
             }
         }
-        if (target.Transform) {
-            float sqrDist = Vector2.SqrMagnitude(transform.position - target.Transform.position);
-            if (sqrDist > (distance * distance)) {
-                target.Transform = null;
-                AIDebugBlock.Change(TargetID, "null");
+
+        public void ResetObject() {
+            aiMachine?.Restart();
+        }
+
+        private void OnDrawGizmosSelected() {
+            Gizmos.DrawWireSphere(transform.position, distance);
+            if (target.Transform) {
+                Gizmos.color = Color.red * Color.grey;
+                Gizmos.DrawWireSphere(target.Transform.position, 0.2f);
             }
+            if (agent) {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(agent.destination, 0.3f);
+            }
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, stoppingDistance);
         }
-    }
-
-    public void ResetObject() {
-        aiMachine?.Restart();
-    }
-
-    private void OnDrawGizmosSelected() {
-        Gizmos.DrawWireSphere(transform.position, distance);
-        if (target.Transform) {
-            Gizmos.color = Color.red * Color.grey;
-            Gizmos.DrawWireSphere(target.Transform.position, 0.2f);
-        }
-        if (agent) {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(agent.destination, 0.3f);
-        }
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
-    }
+    } 
 }

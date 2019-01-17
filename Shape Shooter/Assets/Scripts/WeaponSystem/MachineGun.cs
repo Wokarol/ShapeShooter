@@ -26,7 +26,7 @@ namespace Wokarol.GunSystem
         }
 
         protected override void Shot() {
-            impulseSource.GenerateImpulse();
+            impulseSource?.GenerateImpulse();
             bulletPool.Get(transform.position, Quaternion.FromToRotation(Vector3.up, input.AimDirection) * Quaternion.Euler(0, 0, Random.Range(-spread, spread)));
             if (animator) animator.SetTrigger(animatorShotHash);
         }
