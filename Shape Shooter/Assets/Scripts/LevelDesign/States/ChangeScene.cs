@@ -12,11 +12,11 @@ namespace Wokarol.LevelBrains
 
         public override bool CanTransitionToSelf => false;
 
-        public override void Enter(StateMachine stateMachine) {
+        protected override void EnterProcess(StateMachine stateMachine) {
             ScenesController.Instance.ChangeScene(_sceneName);
         }
 
-        public override void Exit(StateMachine stateMachine) {
+        protected override void ExitProcess(StateMachine stateMachine) {
         }
 
         protected override State Process() {

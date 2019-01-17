@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    [SerializeField] Transform[] AffectedTransforms;
+    [SerializeField] Transform[] AffectedTransforms = new Transform[0];
 
     public void Teleport(Vector3 target) {
         foreach (var trans in AffectedTransforms) {

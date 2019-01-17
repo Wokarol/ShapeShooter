@@ -10,10 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54eb531e813f74f408e5d56e03399cb9, type: 3}
-  m_Name: Wave1
+  m_Name: Standard Enemies Wave
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - point: {x: 5, y: 5}
-    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
-  - point: {x: -5, y: -5}
-    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  spawnPoints: []

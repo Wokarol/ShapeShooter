@@ -9,7 +9,7 @@ namespace Wokarol
 	public class StartScene : MonoBehaviour
 	{
 		// Variables
-		[SerializeField] StringVariable nameOfTheStartScene;
+		[SerializeField] StringVariable nameOfTheStartScene = null;
 
 		// Functions
 		private void Start ()

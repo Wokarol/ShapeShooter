@@ -9,10 +9,10 @@ public class WaitState : State
 
     public override bool CanTransitionToSelf => false;
 
-    public override void Enter(StateMachine stateMachine) {
+    protected override void EnterProcess(StateMachine stateMachine) {
     }
 
-    public override void Exit(StateMachine stateMachine) {
+    protected override void ExitProcess(StateMachine stateMachine) {
     }
 
     protected override State Process() {

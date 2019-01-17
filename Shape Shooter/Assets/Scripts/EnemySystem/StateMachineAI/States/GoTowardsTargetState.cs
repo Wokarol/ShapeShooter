@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using Wokarol.AI;
 using Wokarol.StateSystem;
 
-public class AttackingState : State
+public class GoTowardsTargetState : State
 {
     const float targetRefreshInterval = 0.2f;
 
@@ -22,15 +22,13 @@ public class AttackingState : State
     private WaitState _wait;
     private float _countdown;
 
-    public AttackingState(string name, Target target, NavMeshAgent agent, WaitState wait) {
+    public GoTowardsTargetState(string name, Target target, NavMeshAgent agent, WaitState wait) {
         Name = name;
         _target = target;
         _agent = agent;
         _wait = wait;
     }
-
-
-    public override void Enter(StateMachine stateMachine) {
+    protected override void EnterProcess(StateMachine stateMachine) {
         #region DebugBlock
 #if UNITY_EDITOR
         _debugBlock = stateMachine.DebugBlock;
@@ -41,7 +39,7 @@ public class AttackingState : State
         _countdown = 0;
     }
 
-    public override void Exit(StateMachine stateMachine) {
+    protected override void ExitProcess(StateMachine stateMachine) {
         _agent.SetDestination(_agent.transform.position + _agent.velocity);
         #region DebugBlock
 #if UNITY_EDITOR

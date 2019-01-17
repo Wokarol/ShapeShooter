@@ -23,11 +23,11 @@ namespace Wokarol.LevelDesign
 
         public override bool CanTransitionToSelf => throw new System.NotImplementedException();
         public State ExitState { get; set; }
-        public override void Enter(StateMachine stateMachine) {
+        protected override void EnterProcess(StateMachine stateMachine) {
             _start.Teleport(_end);
             onTeleportAction?.Invoke();
         }
-        public override void Exit(StateMachine stateMachine) {
+        protected override void ExitProcess(StateMachine stateMachine) {
 
         }
         protected override State Process() {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +9,17 @@ namespace Wokarol.PoolSystem
     {
         [SerializeField] PoolableObject prefab = null;
         [SerializeField] int initialSize = 10;
-        [SerializeField] bool populateOnAwake = true;
+        [SerializeField] bool populateOnAwake = false;
 
         Queue<PoolableObject> poolObjects = new Queue<PoolableObject>();
         int genNumber = 0;
+
+        public event Action OnObjectDestroyed = null;
+
+        public void Setup(PoolableObject poolableObject) {
+            prefab = poolableObject;
+            PopulatePool(initialSize);
+        }
 
         void Awake() {
             if(populateOnAwake)
@@ -20,7 +28,7 @@ namespace Wokarol.PoolSystem
 
         public void PopulatePool(int size) {
             for (int i = 0; i < size; i++) {
-                var pObj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+                var pObj = Instantiate(prefab, transform.position, Quaternion.identity);
                 pObj.gameObject.name = $"{prefab.name}_{genNumber}";
                 pObj.Deactivate();
                 poolObjects.Enqueue(pObj);
@@ -53,6 +61,7 @@ namespace Wokarol.PoolSystem
             poolObject.Deactivate();
             if (poolObject as PoolableObject == null) Debug.LogError("...");
             poolObjects.Enqueue(poolObject as PoolableObject);
+            OnObjectDestroyed?.Invoke();
         }
     } 
 }

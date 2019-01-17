@@ -4769,8 +4769,9 @@ GameObject:
   - component: {fileID: 3335292034125665099}
   - component: {fileID: 5057374783146426099}
   - component: {fileID: 6042901432227651985}
+  - component: {fileID: 9144254982622186070}
   m_Layer: 10
-  m_Name: DummyEnemy
+  m_Name: StandardEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4809,6 +4810,7 @@ MonoBehaviour:
   otherComponents:
   - {fileID: 3335292034125665099}
   - {fileID: 5057374783146426099}
+  - {fileID: 9144254982622186070}
   actorHealth: {fileID: 6042901432227651985}
 --- !u!58 &3335292034125665099
 CircleCollider2D:
@@ -4905,6 +4907,25 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &9144254982622186070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3653787253703803323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb17410b8a52a4e41a78ba6b093145e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target:
+    Transform: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  distance: 100
+  stoppingDistance: 1
 --- !u!1 &3653787254848150293
 GameObject:
   m_ObjectHideFlags: 0

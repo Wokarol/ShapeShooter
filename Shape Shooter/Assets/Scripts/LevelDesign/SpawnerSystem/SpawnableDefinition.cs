@@ -8,9 +8,17 @@ namespace Wokarol.SpawnSystem
     [CreateAssetMenu]
     public class SpawnableDefinition : ScriptableObject
     {
-        [SerializeField] string debugName;
-        [SerializeField] PoolObject spawnableObject;
+        [SerializeField] PoolObject spawnableObject = null;
+        [Header("Debug")]
+        [SerializeField] string debugName = "";
+        [SerializeField] Color color = Color.white;
+        [SerializeField] Shapes shape = Shapes.Circle;
 
-        // TODO: Add giuzmos color and shape for debug purposes
+        public PoolObject SpawnableObject => spawnableObject;
+        public string DebugName => debugName;
+        public Color Color => color;
+        public Shapes Shape => shape;
+
+        public enum Shapes { Circle, Square}
     } 
 }

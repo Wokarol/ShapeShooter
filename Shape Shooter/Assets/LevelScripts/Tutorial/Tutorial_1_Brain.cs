@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Wokarol.LevelDesign;
+using Wokarol.SpawnSystem;
 using Wokarol.StateSystem;
 
 namespace Wokarol.LevelBrains
@@ -16,12 +17,12 @@ namespace Wokarol.LevelBrains
         [SerializeField] StringVariable nextScene;
 
         [Header("Teleports")]
-        [SerializeField] Teleporter MovingLevelTeleporter = null;
-        [SerializeField] Teleporter ShootingLevelTeleporter = null;
+        [SerializeField] Teleporter movingLevelTeleporter = null;
+        [SerializeField] Teleporter shootingLevelTeleporter = null;
 
         [Header("Cameras")]
-        [SerializeField] GameObject MovingLevelCamera = null;
-        [SerializeField] GameObject ShootingLevelCamera = null;
+        [SerializeField] GameObject movingLevelCamera = null;
+        [SerializeField] GameObject shootingLevelCamera = null;
 
         [Header("Moving Groups")]
         [SerializeField] MovingObjectsGroup horizontalGroup = null;
@@ -37,48 +38,67 @@ namespace Wokarol.LevelBrains
         [SerializeField] Objective targetLeft = null;
         [SerializeField] Objective targetRight = null;
 
-        [Header("Helper")]
-        [SerializeField] GameObject MovementHelper = null;
+        [Header("Waves")]
+        [SerializeField] WavePattern waveWithDummies = null;
+        [SerializeField] WavePattern waveWithStandardEnemies = null;
+
+        [Header("Helpers")]
+        [SerializeField] GameObject movementHelper = null;
 
         [Header("Timming")]
         [SerializeField] float timeToStart = 15f;
 
+        [Header("Other")]
+        [SerializeField] Spawner shootingLevelSpawner = null;
+
         [Header("Debug")]
         [SerializeField] LevelState startState = LevelState.Moving;
-        enum LevelState { Moving/*, Shooting*/ }
+        enum LevelState { Moving, Shooting }
 
         private void Awake() {
             BrainDebugBlock.Define("Time", TimeID);
 
-            MovementHelper.SetActive(false);
-            ShootingLevelCamera.SetActive(false);
+            movementHelper.SetActive(false);
+            shootingLevelCamera.SetActive(false);
 
             // States
             var waitForTime = new WaitState("Wait for time");
             var movingHorizontal = new MoveObjectsState("Moving horizontal space", horizontalFirstPhaseDistance, horizontalGroup, 1);
             var movingVertical = new MoveObjectsState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1);
             var movingBoth = new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[] { verticalGroup, horizontalGroup }, 1);
-            var teleport = new TeleportState(MovingLevelTeleporter, ShootingLevelTeleporter.transform.position, () => { MovingLevelCamera.SetActive(false); ShootingLevelCamera.SetActive(true); });
+            var teleport = new TeleportState(movingLevelTeleporter, shootingLevelTeleporter.transform.position, () => { movingLevelCamera.SetActive(false); shootingLevelCamera.SetActive(true); });
+            var dummiesWave = new SpawnWaveState(shootingLevelSpawner, waveWithDummies, 0.1f);
+            var normalWave = new SpawnWaveState(shootingLevelSpawner, waveWithStandardEnemies, 0.1f);
+
+            // OnEnter or OnExit events
+            movingHorizontal.OnEnter += () => movementHelper.SetActive(true);
+            movingVertical.OnExit += () => movementHelper.SetActive(false);
 
             // Transitions
             waitForTime.AddTransition(
                 () => Time.time > timeToStart,
-                movingHorizontal,
-                () => MovementHelper.SetActive(true));
+                movingHorizontal);
             movingHorizontal.AddTransition(
                 () => movingHorizontal.Finished && targetLeft.Achieved && targetRight.Achieved,
                 movingVertical);
             movingVertical.AddTransition(
                 () => movingVertical.Finished && targetUp.Achieved && targetDown.Achieved,
-                movingBoth,
-                () => MovementHelper.SetActive(false));
+                movingBoth);
             movingBoth.AddTransition(
                 () => movingBoth.Finished,
                 teleport);
+            teleport.ExitState = dummiesWave;
+            dummiesWave.AddTransition(
+                () => dummiesWave.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
+                normalWave);
+            
 
             switch (startState) {
                 case LevelState.Moving:
                     levelMachine = new StateMachine(waitForTime, BrainDebugBlock);
+                    break;
+                case LevelState.Shooting:
+                    levelMachine = new StateMachine(teleport, BrainDebugBlock);
                     break;
                 default:
                     break;

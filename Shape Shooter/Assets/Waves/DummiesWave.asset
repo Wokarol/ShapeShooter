@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54eb531e813f74f408e5d56e03399cb9, type: 3}
+  m_Name: DummiesWave
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - point: {x: -12.229187, y: 6.442499}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 12.023796, y: 6.5387406}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 12.023796, y: -5.491507}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -11.026154, y: -5.9727173}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -6.490692, y: 4.661071}
+    spawnable: {fileID: 0}
+  - point: {x: 7.337307, y: 4.661071}
+    spawnable: {fileID: 0}
+  - point: {x: 6.5076256, y: -3.8016658}
+    spawnable: {fileID: 0}
+  - point: {x: -6.6013184, y: -3.856977}
+    spawnable: {fileID: 0}

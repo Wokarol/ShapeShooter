@@ -61,7 +61,6 @@ public class DebugBlockInspector : EditorWindow
         EditorGUI.BeginChangeCheck();
         target = (MonoBehaviour)EditorGUILayout.ObjectField("Target", target, typeof(MonoBehaviour), true);
         if (EditorGUI.EndChangeCheck()) {
-            //Debug.Log($"{target.GetInstanceID()}");
             FindBlocks(target);
         }
 

@@ -39,8 +39,20 @@ namespace Wokarol.StateSystem
         public abstract bool CanTransitionToSelf { get; }
         public virtual string Name { get; protected set; } = "No name setted";
 
-        public abstract void Enter(StateMachine stateMachine);
-        public abstract void Exit(StateMachine stateMachine);
+        public event Action OnEnter;
+        public event Action OnExit;
+
+        public void Enter(StateMachine stateMachine) {
+            OnEnter?.Invoke();
+            EnterProcess(stateMachine);
+        }
+        public void Exit(StateMachine stateMachine) {
+            ExitProcess(stateMachine);
+            OnExit?.Invoke();
+        }
+
+        protected abstract void EnterProcess(StateMachine stateMachine);
+        protected abstract void ExitProcess(StateMachine stateMachine);
 
         public State Tick() {
             State processedState = Process();

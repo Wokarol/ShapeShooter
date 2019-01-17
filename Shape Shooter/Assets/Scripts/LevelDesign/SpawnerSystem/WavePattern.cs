@@ -1,21 +1,40 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Wokarol.SpawnSystem;
 
-namespace Wokarol.SpawnSystem
+namespace Wokarol
 {
     [CreateAssetMenu]
     public class WavePattern : ScriptableObject
     {
-        [SerializeField] SpawnPoint[] spawnPoints;
-        public SpawnPoint[] SpawnPoints => spawnPoints;
+        [SerializeField] List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
+        public List<SpawnPoint> SpawnPoints => spawnPoints;
 
         [System.Serializable]
         public class SpawnPoint
         {
-            [SerializeField] Vector2 point;
-            [SerializeField] SpawnableDefinition spawnable;
+            public SpawnPoint(Vector2 point, SpawnableDefinition spawnable) {
+                this.point = point;
+                this.spawnable = spawnable;
+            }
+
+            [SerializeField] Vector2 point = Vector2.zero;
+            [SerializeField] SpawnableDefinition spawnable = null;
 
             public Vector2 Point => point;
             public SpawnableDefinition Spawnable => spawnable;
+        }
+
+        public void Validate() {
+            RemoveNulls();
+        }
+
+        private void RemoveNulls() {
+            for (int i = spawnPoints.Count - 1; i >= 0; i--) {
+                if (spawnPoints[i].Spawnable == null)
+                    spawnPoints.RemoveAt(i);
+            }
         }
     }
 

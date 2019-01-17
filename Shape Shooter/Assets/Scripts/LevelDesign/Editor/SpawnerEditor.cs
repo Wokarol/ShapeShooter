@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -8,24 +9,50 @@ namespace Wokarol.SpawnSystem.Editors
     [CustomEditor(typeof(Spawner))]
     public class SpawnerEditor : Editor
     {
-        Color innerColorCache = new Color(0.98f, 0.7f, 0.43f, 0.5f);
-        Color outerColorCache = new Color(0.98f, 0.7f, 0.43f, 1);
+        [SerializeField] Transform transform;
 
-        public override void OnInspectorGUI() {
-            base.OnInspectorGUI();
+        [SerializeField] WaveEditorHandler waveEditorHandler;
 
+        private void OnEnable() {
+            transform = (target as Spawner).transform;
+            waveEditorHandler = new WaveEditorHandler(transform, this);
         }
 
         private void OnSceneGUI() {
-            Spawner spawner = target as Spawner;
+            waveEditorHandler.OnSceneGUI();
+        }
 
-            if (spawner.WavePattern != null)
-                foreach (var spawn in spawner.WavePattern.SpawnPoints) {
-                    Handles.color = innerColorCache;
-                    Handles.DrawSolidDisc(spawner.transform.TransformPoint(spawn.Point), Vector3.back, 0.65f);
-                    Handles.color = outerColorCache;
-                    Handles.DrawWireDisc(spawner.transform.TransformPoint(spawn.Point), Vector3.back, 0.65f);
-                }
+        public override void OnInspectorGUI() {
+            base.OnInspectorGUI();
+            waveEditorHandler.OnInspectorGUI();
+        }
+
+        private void DrawShape(Transform target, WavePattern.SpawnPoint spawn) {
+            Color color = spawn.Spawnable.Color;
+
+            switch (spawn.Spawnable.Shape) {
+                case SpawnableDefinition.Shapes.Circle:
+                    color.a = 0.5f;
+                    Handles.color = color;
+                    Handles.DrawSolidDisc(target.TransformPoint(spawn.Point), Vector3.back, 0.65f);
+
+                    color.a = 1f;
+                    Handles.color = color;
+                    Handles.DrawWireDisc(target.TransformPoint(spawn.Point), Vector3.back, 0.65f);
+                    break;
+
+                case SpawnableDefinition.Shapes.Square:
+                    Vector2 size = new Vector2(1f, 1f);
+                    Color face = color;
+                    face.a = 0.5f;
+                    Color outline = color;
+                    outline.a = 1f;
+                    Handles.DrawSolidRectangleWithOutline(new Rect((Vector2)target.TransformPoint(spawn.Point) - (size * 0.5f), size), face, outline);
+                    break;
+
+                default:
+                    break;
+            }
         }
     } 
 }

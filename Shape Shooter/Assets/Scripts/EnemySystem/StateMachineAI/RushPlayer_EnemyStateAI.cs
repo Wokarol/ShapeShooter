@@ -7,7 +7,7 @@ using Wokarol.AI;
 using Wokarol.StateSystem;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyStateAI : MonoBehaviour, IResetable
+public class RushPlayer_EnemyStateAI : MonoBehaviour, IResetable
 {
     private const string TargetID = "AI_Target";
 
@@ -26,7 +26,7 @@ public class EnemyStateAI : MonoBehaviour, IResetable
         AIDebugBlock.Define("Target", TargetID);
 
         var wait = new WaitState("Wait in place");
-        var attacking = new AttackingState("Attack targte", target, agent, wait);
+        var attacking = new GoTowardsTargetState("Attack targte", target, agent, wait);
 
         wait.AddTransition(() => target.Transform != null, attacking);
         attacking.AddTransition(() => target.Transform == null, wait);
