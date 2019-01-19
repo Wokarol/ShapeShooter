@@ -29,7 +29,10 @@ namespace Wokarol.SpawnSystem.Editors
             }
 
             style.richText = true;
-            settings.CurrentWave?.Validate();
+            if (settings.CurrentWave) {
+                EditorUtility.SetDirty(settings.CurrentWave);
+                settings.CurrentWave?.Validate();
+            }
         }
 
         public void OnSceneGUI() {
@@ -92,7 +95,10 @@ namespace Wokarol.SpawnSystem.Editors
 
             if (EditorGUI.EndChangeCheck()) {
                 SceneView.RepaintAll();
-                settings.CurrentWave?.Validate();
+                if (settings.CurrentWave) {
+                    EditorUtility.SetDirty(settings.CurrentWave);
+                    settings.CurrentWave?.Validate();
+                }
             }
 
         }

@@ -13,10 +13,10 @@ namespace Wokarol.StateSystem
         private const string StateTypeID = "Machine_State_Type";
         private const string StateNameID = "Machine_State_Name";
         private const string DividerID = "Machine_Divider";
-
-        public DebugBlock DebugBlock { get; }
 #endif
         #endregion
+
+        public DebugBlock DebugBlock { get; }
 
         State _initialState;
         State _currentState;

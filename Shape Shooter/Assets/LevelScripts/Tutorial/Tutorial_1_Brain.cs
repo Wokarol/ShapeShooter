@@ -44,6 +44,7 @@ namespace Wokarol.LevelBrains
 
         [Header("Helpers")]
         [SerializeField] GameObject movementHelper = null;
+        [SerializeField] GameObject aimingHelper = null;
 
         [Header("Timming")]
         [SerializeField] float timeToStart = 15f;
@@ -59,6 +60,7 @@ namespace Wokarol.LevelBrains
             BrainDebugBlock.Define("Time", TimeID);
 
             movementHelper.SetActive(false);
+            aimingHelper.SetActive(false);
             shootingLevelCamera.SetActive(false);
 
             // States
@@ -73,6 +75,9 @@ namespace Wokarol.LevelBrains
             // OnEnter or OnExit events
             movingHorizontal.OnEnter += () => movementHelper.SetActive(true);
             movingVertical.OnExit += () => movementHelper.SetActive(false);
+
+            dummiesWave.OnEnter += () => aimingHelper.SetActive(true);
+            dummiesWave.OnExit += () => aimingHelper.SetActive(false);
 
             // Transitions
             waitForTime.AddTransition(

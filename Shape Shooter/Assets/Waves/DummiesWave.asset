@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54eb531e813f74f408e5d56e03399cb9, type: 3}
   m_Name: DummiesWave
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  spawnPoints:
+  - point: {x: 0.03968811, y: 6.025536}
+    spawnable: {fileID: 11400000, guid: accaa392f8e32ca4ab50fe7c92f8eb20, type: 2}
+  - point: {x: 0.076805115, y: -6.0364504}
+    spawnable: {fileID: 11400000, guid: accaa392f8e32ca4ab50fe7c92f8eb20, type: 2}
+  - point: {x: -6.195427, y: 0.013099819}
+    spawnable: {fileID: 11400000, guid: accaa392f8e32ca4ab50fe7c92f8eb20, type: 2}
+  - point: {x: 5.792328, y: 0.013099819}
+    spawnable: {fileID: 11400000, guid: accaa392f8e32ca4ab50fe7c92f8eb20, type: 2}

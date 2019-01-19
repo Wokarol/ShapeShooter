@@ -11,7 +11,7 @@ namespace Wokarol
         [SerializeField] List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
         public List<SpawnPoint> SpawnPoints => spawnPoints;
 
-        [System.Serializable]
+        [Serializable]
         public class SpawnPoint
         {
             public SpawnPoint(Vector2 point, SpawnableDefinition spawnable) {
