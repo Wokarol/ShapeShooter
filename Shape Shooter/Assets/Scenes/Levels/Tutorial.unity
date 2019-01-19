@@ -1081,9 +1081,10 @@ MonoBehaviour:
   waveWithDummies: {fileID: 11400000, guid: 2722a2029f9fa374b99a50da4ecc085b, type: 2}
   waveWithStandardEnemies: {fileID: 11400000, guid: 4fbc8ac9e90dac14a9efd3e528678dc8,
     type: 2}
-  movementHelper: {fileID: 1189971846}
-  aimingHelper: {fileID: 672214091}
+  movementHelper: {fileID: 1189971849}
+  aimingHelper: {fileID: 672214094}
   timeToStart: 5
+  timeToStartAfterTeleport: 1
   shootingLevelSpawner: {fileID: 1886413542}
   startState: 0
 --- !u!4 &551052979
@@ -1286,6 +1287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 672214092}
   - component: {fileID: 672214093}
+  - component: {fileID: 672214094}
   m_Layer: 0
   m_Name: AimingHelper
   m_TagString: Untagged
@@ -1331,6 +1333,25 @@ MonoBehaviour:
   - {fileID: 1149528669}
   - {fileID: 1462621570}
   alpha: 1
+--- !u!95 &672214094
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672214091}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 751d23bbe4b410845bf8534064a53412, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &674221397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,6 +2133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1189971847}
   - component: {fileID: 1189971848}
+  - component: {fileID: 1189971849}
   m_Layer: 0
   m_Name: MovementHelper
   m_TagString: Untagged
@@ -2155,6 +2177,25 @@ MonoBehaviour:
   - {fileID: 1484701768}
   - {fileID: 1032717916}
   alpha: 1
+--- !u!95 &1189971849
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189971846}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 751d23bbe4b410845bf8534064a53412, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1217876309
 PrefabInstance:
   m_ObjectHideFlags: 0

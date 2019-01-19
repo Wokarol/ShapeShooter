@@ -15,7 +15,8 @@ namespace Wokarol.StateSystem
         int _currentWaveSpawnIndex = 0;
         bool _finished = false;
 
-        public SpawnWaveState(Spawner spawner, WavePattern wavePattern, float spawnInterval) {
+        public SpawnWaveState(string name, Spawner spawner, WavePattern wavePattern, float spawnInterval) {
+            Name = name;
             _spawner = spawner;
             _wavePattern = wavePattern;
             _spawnInterval = spawnInterval;

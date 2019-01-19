@@ -10,6 +10,9 @@ namespace Wokarol.LevelBrains
     public class Tutorial_1_Brain : MonoBehaviour
     {
         private const string TimeID = "Brain_Time";
+
+        private readonly int HelperAnimatorActiveBoolHash = Animator.StringToHash("Active");
+
         StateMachine levelMachine;
         public DebugBlock BrainDebugBlock { get; } = new DebugBlock("Level Brain");
 
@@ -43,11 +46,12 @@ namespace Wokarol.LevelBrains
         [SerializeField] WavePattern waveWithStandardEnemies = null;
 
         [Header("Helpers")]
-        [SerializeField] GameObject movementHelper = null;
-        [SerializeField] GameObject aimingHelper = null;
+        [SerializeField] Animator movementHelper = null;
+        [SerializeField] Animator aimingHelper = null;
 
         [Header("Timming")]
         [SerializeField] float timeToStart = 15f;
+        [SerializeField] float timeToStartAfterTeleport = 3f;
 
         [Header("Other")]
         [SerializeField] Spawner shootingLevelSpawner = null;
@@ -56,11 +60,13 @@ namespace Wokarol.LevelBrains
         [SerializeField] LevelState startState = LevelState.Moving;
         enum LevelState { Moving, Shooting }
 
+        float teleportTimestamp;
+
         private void Awake() {
             BrainDebugBlock.Define("Time", TimeID);
 
-            movementHelper.SetActive(false);
-            aimingHelper.SetActive(false);
+            movementHelper.SetBool(HelperAnimatorActiveBoolHash, false);
+            aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
             shootingLevelCamera.SetActive(false);
 
             // States
@@ -69,15 +75,18 @@ namespace Wokarol.LevelBrains
             var movingVertical = new MoveObjectsState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1);
             var movingBoth = new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[] { verticalGroup, horizontalGroup }, 1);
             var teleport = new TeleportState(movingLevelTeleporter, shootingLevelTeleporter.transform.position, () => { movingLevelCamera.SetActive(false); shootingLevelCamera.SetActive(true); });
-            var dummiesWave = new SpawnWaveState(shootingLevelSpawner, waveWithDummies, 0.1f);
-            var normalWave = new SpawnWaveState(shootingLevelSpawner, waveWithStandardEnemies, 0.1f);
+            var waitAfterTeleport = new WaitState("Waiting for first wave");
+            var dummiesWave = new SpawnWaveState("Spawning dummies wave", shootingLevelSpawner, waveWithDummies, 0.1f);
+            var normalWave = new SpawnWaveState("Spawning acctual wave", shootingLevelSpawner, waveWithStandardEnemies, 0.1f);
 
             // OnEnter or OnExit events
-            movingHorizontal.OnEnter += () => movementHelper.SetActive(true);
-            movingVertical.OnExit += () => movementHelper.SetActive(false);
+            movingHorizontal.OnEnter += () => movementHelper.SetBool(HelperAnimatorActiveBoolHash, true);
+            movingVertical.OnExit += () => movementHelper.SetBool(HelperAnimatorActiveBoolHash, false);
 
-            dummiesWave.OnEnter += () => aimingHelper.SetActive(true);
-            dummiesWave.OnExit += () => aimingHelper.SetActive(false);
+            dummiesWave.OnEnter += () => aimingHelper.SetBool(HelperAnimatorActiveBoolHash, true);
+            dummiesWave.OnExit += () => aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
+
+            teleport.OnExit += () => teleportTimestamp = Time.time;
 
             // Transitions
             waitForTime.AddTransition(
@@ -92,7 +101,10 @@ namespace Wokarol.LevelBrains
             movingBoth.AddTransition(
                 () => movingBoth.Finished,
                 teleport);
-            teleport.ExitState = dummiesWave;
+            teleport.ExitState = waitAfterTeleport;
+            waitAfterTeleport.AddTransition(
+                () => Time.time > teleportTimestamp + timeToStartAfterTeleport,
+                dummiesWave);
             dummiesWave.AddTransition(
                 () => dummiesWave.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
                 normalWave);
