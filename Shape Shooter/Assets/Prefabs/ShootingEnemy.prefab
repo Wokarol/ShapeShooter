@@ -4971,9 +4971,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
-  seekingRange: 15
-  shootingRange: 10
-  startAttackRange: 8
+  seekingRange: 100
+  shootingRange: 20
+  startAttackRange: 17
 --- !u!114 &2349870390337458446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4987,11 +4987,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 2349870390337458445}
-  shotInterval: 0.5
+  shotInterval:
+    min: 1
+    max: 1.5
   bulletPool: {fileID: 164587876}
   animator: {fileID: 0}
   animationTrigger: Shot
-  spread: 15
+  spread: 5
   impulseSource: {fileID: 0}
 --- !u!1 &5394196992681714429
 GameObject:

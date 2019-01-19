@@ -6,7 +6,7 @@ namespace Wokarol.GunSystem
     public abstract class RapidShotGun : MonoBehaviour
     {
         [SerializeField] protected InputData input;
-        [SerializeField] float shotInterval = 0.5f;
+        [SerializeField] MinMaxFloat shotInterval = new MinMaxFloat(0.5f, 0.7f);
 
         float shotCountdown = -1;
 
@@ -16,7 +16,7 @@ namespace Wokarol.GunSystem
 
         private void Update() {
             if(input.Shoot && shotCountdown < 0) {
-                shotCountdown = shotInterval;
+                shotCountdown = shotInterval.Value;
                 Shot();
             }
             shotCountdown -= Time.deltaTime;
