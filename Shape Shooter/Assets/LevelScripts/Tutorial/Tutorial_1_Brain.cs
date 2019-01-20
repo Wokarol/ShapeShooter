@@ -40,6 +40,7 @@ namespace Wokarol.LevelBrains
         [SerializeField] Objective targetDown = null;
         [SerializeField] Objective targetLeft = null;
         [SerializeField] Objective targetRight = null;
+        [SerializeField] Objective exitTarget = null;
 
         [Header("Waves")]
         [SerializeField] WavePattern waveWithDummies = null;
@@ -68,6 +69,7 @@ namespace Wokarol.LevelBrains
             movementHelper.SetBool(HelperAnimatorActiveBoolHash, false);
             aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
             shootingLevelCamera.SetActive(false);
+            exitTarget.gameObject.SetActive(false);
 
             // States
             var waitForTime = new WaitState("Wait for time");
@@ -78,6 +80,7 @@ namespace Wokarol.LevelBrains
             var waitAfterTeleport = new WaitState("Waiting for first wave");
             var dummiesWave = new SpawnWaveState("Spawning dummies wave", shootingLevelSpawner, waveWithDummies, 0.1f);
             var normalWave = new SpawnWaveState("Spawning acctual wave", shootingLevelSpawner, waveWithStandardEnemies, 0.1f);
+            var waitForExit = new WaitState("Wait for exit");
 
             // OnEnter or OnExit events
             movingHorizontal.OnEnter += () => movementHelper.SetBool(HelperAnimatorActiveBoolHash, true);
@@ -87,6 +90,9 @@ namespace Wokarol.LevelBrains
             dummiesWave.OnExit += () => aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
 
             teleport.OnExit += () => teleportTimestamp = Time.time;
+
+            waitForExit.OnEnter += () => exitTarget.gameObject.SetActive(true);
+            waitForExit.OnExit += () => ScenesController.Instance.ChangeScene(nextScene.Value);
 
             // Transitions
             waitForTime.AddTransition(
@@ -108,7 +114,13 @@ namespace Wokarol.LevelBrains
             dummiesWave.AddTransition(
                 () => dummiesWave.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
                 normalWave);
-            
+            normalWave.AddTransition(
+                () => normalWave.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
+                waitForExit);
+
+            waitForExit.AddTransition(
+                () => exitTarget.Achieved,
+                new WaitState("EXIT"));
 
             switch (startState) {
                 case LevelState.Moving:

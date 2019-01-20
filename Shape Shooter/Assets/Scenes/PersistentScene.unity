@@ -548,7 +548,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: v. 0.0.0b17 by Wokarol
+  m_text: v. 3.5.10b638 by Wokarol
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_margin: {x: 5, y: 5, z: 5, w: 0}
   m_textInfo:
     textComponent: {fileID: 1637187979}
-    characterCount: 22
+    characterCount: 24
     spriteCount: 0
     spaceCount: 3
     wordCount: 6
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
-  m_inputSource: 0
+  m_inputSource: 3
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -784,5 +784,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68f1ba3d7cf9c4468d3adc399b467c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOfTheStartScene: {fileID: 11400000, guid: 3de774c9ea035f24185f94b08048bd33,
+  nameOfTheStartScene: {fileID: 11400000, guid: e84fd699a553af7429eceb36fdc4daf8,
     type: 2}

@@ -49,7 +49,7 @@ public class DebugBlockInspector : EditorWindow
     }
 
     void FindTarget() {
-        target = (MonoBehaviour)EditorUtility.InstanceIDToObject(targetID);
+        target = EditorUtility.InstanceIDToObject(targetID) as MonoBehaviour;
         FindBlocks(target);
     }
 

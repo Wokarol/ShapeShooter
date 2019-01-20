@@ -10,8 +10,12 @@ namespace Wokarol
         new SpriteRenderer renderer;
         MaterialPropertyBlock spritePropertyBlock;
         [SerializeField] float speedMultiplier = 0.1f;
+        [SerializeField] float smoothing = 0f;
 
         Vector3 lastPos;
+
+        Vector3 currentVelocity;
+        Vector3 currentSmoothVelocity;
 
         public MaterialPropertyBlock SpritePropertyBlock {
             get {
@@ -30,10 +34,21 @@ namespace Wokarol
             }
         }
 
-        private void Update() {
-            var velocity = lastPos - transform.position;
-            UpdateValues(velocity.normalized, velocity.magnitude * (speedMultiplier / Time.deltaTime));
+        private void Start() {
             lastPos = transform.position;
+            currentVelocity = Vector3.zero;
+        }
+
+        private void Update() {
+            var velocity = (lastPos - transform.position)/Time.deltaTime;
+
+            currentVelocity = Vector3.SmoothDamp(currentVelocity, velocity, ref currentSmoothVelocity, smoothing);
+
+            UpdateValues(currentVelocity.normalized, currentVelocity.magnitude * (speedMultiplier));
+            lastPos = transform.position;
+
+            Debug.DrawRay(transform.position, -velocity * 0.25f, Color.red);
+            Debug.DrawRay(transform.position, -currentVelocity * 0.25f, Color.blue);
         }
 
         private void OnEnable() {
