@@ -17,7 +17,7 @@ namespace Wokarol.LevelBrains
         public DebugBlock BrainDebugBlock { get; } = new DebugBlock("Level Brain");
 
         [Header("Scenes")]
-        [SerializeField] StringVariable nextScene;
+        [SerializeField] StringVariable nextScene = null;
 
         [Header("Teleports")]
         [SerializeField] Teleporter movingLevelTeleporter = null;
