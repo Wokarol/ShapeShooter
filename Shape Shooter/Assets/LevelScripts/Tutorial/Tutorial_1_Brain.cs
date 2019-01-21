@@ -21,6 +21,7 @@ namespace Wokarol.LevelBrains
         [SerializeField] StringVariable nextScene = null;
 
         [Header("Sub-levels")]
+        [SerializeField] SubLevelID movingLevelID = null;
         [SerializeField] SubLevelID shootingLevelID = null; 
 
         [Header("Cameras")]
@@ -72,10 +73,15 @@ namespace Wokarol.LevelBrains
         private void Awake() {
             BrainDebugBlock.Define("Time", TimeID);
 
+            subLevelSwitch.SetAllLevelsState(true);
+
             movementHelper.SetBool(HelperAnimatorActiveBoolHash, false);
             aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
             shootingLevelCamera.SetActive(false);
             exitTarget.gameObject.SetActive(false);
+
+            subLevelSwitch.SetAllLevelsState(false);
+            subLevelSwitch.ChangeLevel(movingLevelID);
 
             // States
             var waitForTime = new WaitState("Wait for time");

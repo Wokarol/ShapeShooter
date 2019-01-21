@@ -857,9 +857,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1.05}
-  m_AnchoredPosition: {x: 0, y: 5}
-  m_SizeDelta: {x: 0, y: -10}
+  m_AnchorMax: {x: 1, y: 1.2}
+  m_AnchoredPosition: {x: 0, y: 1.0999756}
+  m_SizeDelta: {x: 0, y: -17.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &297989431
 MonoBehaviour:
@@ -881,8 +881,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 6b13077fd03831146802949a93d8ccdc, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1891,26 +1891,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7674085954486460625, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -41
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674085954486460625, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674085954486460625, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 67.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 7674085954486460625, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 67.42
-      objectReference: {fileID: 0}
     - target: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1945,6 +1925,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954486460625, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954486460625, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954486460625, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 67.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954486460625, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 67.42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bedbc2b24bf2dcd43a1fea5f1924e068, type: 3}

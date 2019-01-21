@@ -13,6 +13,7 @@ namespace Wokarol.SubLevelSystem
         }
 
         [SerializeField] SubLevel[] _levels = new SubLevel[0];
+        [SerializeField] bool startInFirstLevel = false;
 
         Dictionary<SubLevelID, SubLevel> _levelsDictionary;
         SubLevel currentLevel;
@@ -40,8 +41,10 @@ namespace Wokarol.SubLevelSystem
         private void Start() {
             if (Levels.Length == 0) return;
             RemapLevelsDictionary();
-            DisableAllSubLevels();
-            ChangeLevel(_levels[0]);
+            if (startInFirstLevel) {
+                SetAllLevelsState(false);
+                ChangeLevel(_levels[0]); 
+            }
         }
 
         public void ChangeLevel(SubLevelID id) {
@@ -59,12 +62,12 @@ namespace Wokarol.SubLevelSystem
             currentLevel = level;
         }
 
-        private void DisableAllSubLevels() {
+        public void SetAllLevelsState(bool state) {
             foreach (var level in _levels) {
-                SetLevelState(level, false);
+                SetLevelState(level, state);
             }
         }
-        private static void SetLevelState(SubLevel level, bool state) {
+        public static void SetLevelState(SubLevel level, bool state) {
             foreach (var ob in level.SubLevelElements) {
                 ob.SetActive(state);
             }
