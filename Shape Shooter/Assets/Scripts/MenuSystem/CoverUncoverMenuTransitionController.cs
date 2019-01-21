@@ -6,22 +6,29 @@ using UnityEngine;
 namespace Wokarol.MenuSystem
 {
     [RequireComponent(typeof(Animator))]
-    public class MenuTransitionController : MonoBehaviour
+    public class CoverUncoverMenuTransitionController : MenuTransitionController
     {
+        private readonly int TriggerHash = Animator.StringToHash("Transition");
+
         Animator _animator;
         Action _callback;
+
         private void Start() {
             _animator = GetComponent<Animator>();
         }
 
-        public void CallTransition(Action callback) {
-            _animator.SetTrigger("Transition");
+        public override void CallTransition(Action callback) {
+            InMotion = true;
+            _animator.SetTrigger(TriggerHash);
             _callback = callback;
         }
 
         public void TriggerMenuSceneChange() {
-            Debug.Log("Called callback");
             _callback?.Invoke();
+        }
+
+        public void TranitionEnded() {
+            InMotion = false;
         }
     }
 }

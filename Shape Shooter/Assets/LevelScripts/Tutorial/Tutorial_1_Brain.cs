@@ -4,6 +4,7 @@ using UnityEngine;
 using Wokarol.LevelDesign;
 using Wokarol.SpawnSystem;
 using Wokarol.StateSystem;
+using Wokarol.SubLevelSystem;
 
 namespace Wokarol.LevelBrains
 {
@@ -19,9 +20,8 @@ namespace Wokarol.LevelBrains
         [Header("Scenes")]
         [SerializeField] StringVariable nextScene = null;
 
-        [Header("Teleports")]
-        [SerializeField] Teleporter movingLevelTeleporter = null;
-        [SerializeField] Teleporter shootingLevelTeleporter = null;
+        [Header("Sub-levels")]
+        [SerializeField] SubLevelID shootingLevelID = null; 
 
         [Header("Cameras")]
         [SerializeField] GameObject movingLevelCamera = null;
@@ -56,12 +56,18 @@ namespace Wokarol.LevelBrains
 
         [Header("Other")]
         [SerializeField] Spawner shootingLevelSpawner = null;
+        [SerializeField] SubLevelSwitch subLevelSwitch = null;
 
         [Header("Debug")]
         [SerializeField] LevelState startState = LevelState.Moving;
         enum LevelState { Moving, Shooting }
 
-        float teleportTimestamp;
+        float startTimestamp;
+        float waveWaitTimeTimestamp;
+
+        private void Start() {
+            startTimestamp = Time.time;
+        }
 
         private void Awake() {
             BrainDebugBlock.Define("Time", TimeID);
@@ -76,8 +82,7 @@ namespace Wokarol.LevelBrains
             var movingHorizontal = new MoveObjectsState("Moving horizontal space", horizontalFirstPhaseDistance, horizontalGroup, 1);
             var movingVertical = new MoveObjectsState("Moving vertical space", verticalFirstPhaseDistance, verticalGroup, 1);
             var movingBoth = new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[] { verticalGroup, horizontalGroup }, 1);
-            var teleport = new TeleportState(movingLevelTeleporter, shootingLevelTeleporter.transform.position, () => { movingLevelCamera.SetActive(false); shootingLevelCamera.SetActive(true); });
-            var waitAfterTeleport = new WaitState("Waiting for first wave");
+            var waitBeforeFirstWave = new WaitState("Waiting for first wave");
             var dummiesWave = new SpawnWaveState("Spawning dummies wave", shootingLevelSpawner, waveWithDummies, 0.1f);
             var normalWave = new SpawnWaveState("Spawning acctual wave", shootingLevelSpawner, waveWithStandardEnemies, 0.1f);
             var waitForExit = new WaitState("Wait for exit");
@@ -89,14 +94,15 @@ namespace Wokarol.LevelBrains
             dummiesWave.OnEnter += () => aimingHelper.SetBool(HelperAnimatorActiveBoolHash, true);
             dummiesWave.OnExit += () => aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
 
-            teleport.OnExit += () => teleportTimestamp = Time.time;
+            waitBeforeFirstWave.OnEnter += () => subLevelSwitch.ChangeLevel(shootingLevelID);
+            waitBeforeFirstWave.OnEnter += () => waveWaitTimeTimestamp = Time.time;
 
             waitForExit.OnEnter += () => exitTarget.gameObject.SetActive(true);
             waitForExit.OnExit += () => ScenesController.Instance.ChangeScene(nextScene.Value);
 
             // Transitions
             waitForTime.AddTransition(
-                () => Time.time > timeToStart,
+                () => Time.time > startTimestamp + timeToStart,
                 movingHorizontal);
             movingHorizontal.AddTransition(
                 () => movingHorizontal.Finished && targetLeft.Achieved && targetRight.Achieved,
@@ -106,10 +112,9 @@ namespace Wokarol.LevelBrains
                 movingBoth);
             movingBoth.AddTransition(
                 () => movingBoth.Finished,
-                teleport);
-            teleport.ExitState = waitAfterTeleport;
-            waitAfterTeleport.AddTransition(
-                () => Time.time > teleportTimestamp + timeToStartAfterTeleport,
+                waitBeforeFirstWave);
+            waitBeforeFirstWave.AddTransition(
+                () => Time.time > waveWaitTimeTimestamp + timeToStartAfterTeleport,
                 dummiesWave);
             dummiesWave.AddTransition(
                 () => dummiesWave.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
@@ -127,7 +132,7 @@ namespace Wokarol.LevelBrains
                     levelMachine = new StateMachine(waitForTime, BrainDebugBlock);
                     break;
                 case LevelState.Shooting:
-                    levelMachine = new StateMachine(teleport, BrainDebugBlock);
+                    levelMachine = new StateMachine(waitBeforeFirstWave, BrainDebugBlock);
                     break;
                 default:
                     break;
