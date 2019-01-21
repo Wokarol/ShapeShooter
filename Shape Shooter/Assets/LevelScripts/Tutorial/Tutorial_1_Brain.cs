@@ -24,10 +24,6 @@ namespace Wokarol.LevelBrains
         [SerializeField] SubLevelID movingLevelID = null;
         [SerializeField] SubLevelID shootingLevelID = null; 
 
-        [Header("Cameras")]
-        [SerializeField] GameObject movingLevelCamera = null;
-        [SerializeField] GameObject shootingLevelCamera = null;
-
         [Header("Moving Groups")]
         [SerializeField] MovingObjectsGroup horizontalGroup = null;
         [SerializeField] MovingObjectsGroup verticalGroup = null;
@@ -77,7 +73,6 @@ namespace Wokarol.LevelBrains
 
             movementHelper.SetBool(HelperAnimatorActiveBoolHash, false);
             aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
-            shootingLevelCamera.SetActive(false);
             exitTarget.gameObject.SetActive(false);
 
             subLevelSwitch.SetAllLevelsState(false);

@@ -361,7 +361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &184349492
 Transform:
   m_ObjectHideFlags: 0
@@ -456,12 +456,6 @@ PrefabInstance:
 --- !u!4 &186748548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3685906592747688431, guid: 66012150b2ea5a64583487677ab4e17f,
-    type: 3}
-  m_PrefabInstance: {fileID: 186748547}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &186748549 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3685906592747688429, guid: 66012150b2ea5a64583487677ab4e17f,
     type: 3}
   m_PrefabInstance: {fileID: 186748547}
   m_PrefabAsset: {fileID: 0}
@@ -790,7 +784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &466223379
 Transform:
   m_ObjectHideFlags: 0
@@ -973,6 +967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551052979}
   - component: {fileID: 551052978}
+  - component: {fileID: 551052980}
   m_Layer: 0
   m_Name: LevelBrain
   m_TagString: Untagged
@@ -995,8 +990,6 @@ MonoBehaviour:
   nextScene: {fileID: 11400000, guid: e84fd699a553af7429eceb36fdc4daf8, type: 2}
   movingLevelID: {fileID: 11400000, guid: 4248f977ea424e54ea24f7df5914b0b7, type: 2}
   shootingLevelID: {fileID: 11400000, guid: e527e27110e664244ba6eeb49625830a, type: 2}
-  movingLevelCamera: {fileID: 624621294}
-  shootingLevelCamera: {fileID: 186748549}
   horizontalGroup: {fileID: 1517309125}
   verticalGroup: {fileID: 1889420874}
   horizontalFirstPhaseDistance: 0.2
@@ -1030,6 +1023,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &551052980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551052977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e839e4c12473014b9b3d3faccc0f61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4f45626a734010240a9012b1d2511b73, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 7bdba8b5f659fed4881ce69dbf461165, type: 2}
+        m_MethodName: Log
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GameOver
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &563992872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,12 +1215,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
     type: 3}
   m_PrefabInstance: {fileID: 1217876309}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &624621294 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3685906592747688429, guid: 66012150b2ea5a64583487677ab4e17f,
-    type: 3}
-  m_PrefabInstance: {fileID: 866415295}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &624621297 stripped
 Transform:
@@ -2214,7 +2230,7 @@ PrefabInstance:
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.00020349026
+      value: 0.099282086
       objectReference: {fileID: 0}
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
@@ -2224,7 +2240,7 @@ PrefabInstance:
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.999593
+      value: 0.8014358
       objectReference: {fileID: 0}
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}

@@ -4919,13 +4919,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb17410b8a52a4e41a78ba6b093145e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target:
-    Transform: {fileID: 0}
-  targetLayer:
+  targetLayers:
     serializedVersion: 2
     m_Bits: 256
   distance: 100
   stoppingDistance: 1
+  attackInterval: 1
+  byteDistance: 1.2
+  byteForce: 1
 --- !u!1 &3653787254848150293
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,6 +5020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 0.2
+  smoothing: 0
 --- !u!1 &5938869238925287580
 GameObject:
   m_ObjectHideFlags: 0

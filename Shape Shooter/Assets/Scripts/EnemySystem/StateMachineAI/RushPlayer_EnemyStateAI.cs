@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Wokarol.AI;
+using Wokarol.HealthSystem;
 using Wokarol.StateSystem;
 
 namespace Wokarol.AI.EnemyBrains
@@ -19,16 +20,21 @@ namespace Wokarol.AI.EnemyBrains
         Target target = new Target();
         NavMeshAgent agent;
 
-        [SerializeField] LayerMask targetLayer = 0;
+        [SerializeField] LayerMask targetLayers = 0;
         [SerializeField] float distance = 10;
         [SerializeField] float stoppingDistance = 0.2f;
+        [Space]
+        [SerializeField] float attackInterval = 0.2f;
+        [SerializeField] int byteForce = 1;
+
+        private float attackCountdown;
 
         private void Start() {
             agent = GetComponent<NavMeshAgent>();
             AIDebugBlock.Define("Target", TargetID);
 
             var wait = new WaitState("Wait in place");
-            var attacking = new GoTowardsTargetState("Attack targte", target, agent, false);
+            var attacking = new GoTowardsTargetState("Attack target", target, agent, false);
 
             wait.AddTransition(() => target.Transform != null, attacking);
             attacking.AddTransition(() => target.Transform == null, wait);
@@ -40,11 +46,21 @@ namespace Wokarol.AI.EnemyBrains
             TargetCalculation();
             agent.stoppingDistance = stoppingDistance;
             aiMachine?.Tick();
+
+            attackCountdown -= Time.deltaTime;
+        }
+
+        private void OnCollisionStay2D(Collision2D collision) {
+            if (attackCountdown < 0) {
+                var target = collision.collider;
+                target.GetComponentInParent<IDamagable>().Hit(byteForce);
+                attackCountdown = attackInterval;
+            }
         }
 
         private void TargetCalculation() {
             if (!target.Transform) {
-                var collider = Physics2D.OverlapCircle(transform.position, distance, targetLayer);
+                var collider = Physics2D.OverlapCircle(transform.position, distance, targetLayers);
                 if (collider) {
                     target.Transform = collider.transform;
                     AIDebugBlock.Change(TargetID, target.Transform.name);
@@ -76,5 +92,5 @@ namespace Wokarol.AI.EnemyBrains
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, stoppingDistance);
         }
-    } 
+    }
 }
