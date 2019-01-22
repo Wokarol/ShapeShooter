@@ -54,6 +54,7 @@ namespace Wokarol.LevelBrains
         [Header("Helpers")]
         [SerializeField] Animator movementHelper = null;
         [SerializeField] Animator aimingHelper = null;
+        [SerializeField] Animator exitArrow = null;
 
         [Header("Timming")]
         [SerializeField] float timeToStart = 15f;
@@ -82,6 +83,7 @@ namespace Wokarol.LevelBrains
 
             movementHelper.SetBool(HelperAnimatorActiveBoolHash, false);
             aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
+            exitArrow.SetBool(HelperAnimatorActiveBoolHash, false);
             exitTarget.gameObject.SetActive(false);
 
             subLevelSwitch.SetAllLevelsState(false);
@@ -109,6 +111,7 @@ namespace Wokarol.LevelBrains
             waitBeforeFirstWave.OnEnter += () => waveWaitTimeTimestamp = Time.time;
 
             waitForExit.OnEnter += () => exitTarget.gameObject.SetActive(true);
+            waitForExit.OnEnter += () => exitArrow.SetBool(HelperAnimatorActiveBoolHash, true);
             waitForExit.OnExit += () => saveData.RemoveEntry(SaveDataKey);
             waitForExit.OnExit += () => ScenesController.Instance.ChangeScene(nextScene.Value);
 
