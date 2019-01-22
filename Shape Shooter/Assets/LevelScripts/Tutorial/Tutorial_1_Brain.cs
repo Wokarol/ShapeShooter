@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Wokarol.LevelDesign;
+using Wokarol.SerializationSystem;
 using Wokarol.SpawnSystem;
 using Wokarol.StateSystem;
 using Wokarol.SubLevelSystem;
@@ -10,23 +11,30 @@ namespace Wokarol.LevelBrains
 {
     public class Tutorial_1_Brain : MonoBehaviour
     {
-        private const string TimeID = "Brain_Time";
+        private const string SaveDataKey = "LastPositionInLevel";
+        private const string LvlBegginignID = "Beggining";
+        private const string LvlShootingID = "Shooting";
 
+        private const string TimeID = "Brain_Time";
         private readonly int HelperAnimatorActiveBoolHash = Animator.StringToHash("Active");
 
         StateMachine levelMachine;
         public DebugBlock BrainDebugBlock { get; } = new DebugBlock("Level Brain");
+
+        [Header("Saving")]
+        [SerializeField] SaveData saveData = null;
 
         [Header("Scenes")]
         [SerializeField] StringVariable nextScene = null;
 
         [Header("Sub-levels")]
         [SerializeField] SubLevelID movingLevelID = null;
-        [SerializeField] SubLevelID shootingLevelID = null; 
+        [SerializeField] SubLevelID shootingLevelID = null;
 
         [Header("Moving Groups")]
         [SerializeField] MovingObjectsGroup horizontalGroup = null;
         [SerializeField] MovingObjectsGroup verticalGroup = null;
+        [SerializeField] MovingObjectsGroup leftDoorGroup = null;
 
         [Header("Moving Distances")]
         [SerializeField] float horizontalFirstPhaseDistance = 0.14f;
@@ -56,6 +64,7 @@ namespace Wokarol.LevelBrains
         [SerializeField] SubLevelSwitch subLevelSwitch = null;
 
         [Header("Debug")]
+        [SerializeField] bool ovverideSave = false;
         [SerializeField] LevelState startState = LevelState.Moving;
         enum LevelState { Moving, Shooting }
 
@@ -76,7 +85,6 @@ namespace Wokarol.LevelBrains
             exitTarget.gameObject.SetActive(false);
 
             subLevelSwitch.SetAllLevelsState(false);
-            subLevelSwitch.ChangeLevel(movingLevelID);
 
             // States
             var waitForTime = new WaitState("Wait for time");
@@ -86,6 +94,7 @@ namespace Wokarol.LevelBrains
             var waitBeforeFirstWave = new WaitState("Waiting for first wave");
             var dummiesWave = new SpawnWaveState("Spawning dummies wave", shootingLevelSpawner, waveWithDummies, 0.1f);
             var normalWave = new SpawnWaveState("Spawning acctual wave", shootingLevelSpawner, waveWithStandardEnemies, 0.1f);
+            var openingWalls = new MoveObjectsState("Opening Wall", 1, leftDoorGroup, 1);
             var waitForExit = new WaitState("Wait for exit");
 
             // OnEnter or OnExit events
@@ -94,11 +103,13 @@ namespace Wokarol.LevelBrains
 
             dummiesWave.OnEnter += () => aimingHelper.SetBool(HelperAnimatorActiveBoolHash, true);
             dummiesWave.OnExit += () => aimingHelper.SetBool(HelperAnimatorActiveBoolHash, false);
+            dummiesWave.OnExit += () => saveData.SendEntry(SaveDataKey, LvlShootingID);
 
             waitBeforeFirstWave.OnEnter += () => subLevelSwitch.ChangeLevel(shootingLevelID);
             waitBeforeFirstWave.OnEnter += () => waveWaitTimeTimestamp = Time.time;
 
             waitForExit.OnEnter += () => exitTarget.gameObject.SetActive(true);
+            waitForExit.OnExit += () => saveData.RemoveEntry(SaveDataKey);
             waitForExit.OnExit += () => ScenesController.Instance.ChangeScene(nextScene.Value);
 
             // Transitions
@@ -122,20 +133,35 @@ namespace Wokarol.LevelBrains
                 normalWave);
             normalWave.AddTransition(
                 () => normalWave.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
+                openingWalls);
+            openingWalls.AddTransition(
+                () => openingWalls.Finished,
                 waitForExit);
-
             waitForExit.AddTransition(
                 () => exitTarget.Achieved,
                 new WaitState("EXIT"));
 
-            switch (startState) {
-                case LevelState.Moving:
+            if (ovverideSave) {
+                Debug.Log("Ovveriden save");
+                switch (startState) {
+                    default:
+                    case LevelState.Moving:
+                        saveData.SendEntry(SaveDataKey, LvlBegginignID);
+                        break;
+                    case LevelState.Shooting:
+                        saveData.SendEntry(SaveDataKey, LvlShootingID);
+                        break;
+                } 
+            }
+            switch (saveData.GetEntry(SaveDataKey, LvlBegginignID)) {
+                default:
+                case LvlBegginignID:
+                    subLevelSwitch.ChangeLevel(movingLevelID);
                     levelMachine = new StateMachine(waitForTime, BrainDebugBlock);
                     break;
-                case LevelState.Shooting:
-                    levelMachine = new StateMachine(waitBeforeFirstWave, BrainDebugBlock);
-                    break;
-                default:
+                case LvlShootingID:
+                    subLevelSwitch.ChangeLevel(shootingLevelID);
+                    levelMachine = new StateMachine(normalWave, BrainDebugBlock);
                     break;
             }
 

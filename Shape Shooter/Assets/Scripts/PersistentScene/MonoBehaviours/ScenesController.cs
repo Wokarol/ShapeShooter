@@ -32,6 +32,10 @@ namespace Wokarol
             }
 		}
 
+        public void ReloadScene() {
+            ChangeScene(SceneManager.GetActiveScene().name);
+        }
+
 		public void ChangeScene (string nameOfNewScene)
 		{
 			Debug.Log($"Finding {nameOfNewScene}");		

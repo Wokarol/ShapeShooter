@@ -81,13 +81,11 @@ namespace Wokarol.InputSystem
         private void CheckForInputChange() {
             if (usingPad && (oldMousePos - Input.mousePosition).sqrMagnitude > sqrMinMouseDelta) {
                 usingPad = false;
-                Debug.Log("Using mouse");
                 Cursor.visible = true;
             }
             if (!usingPad && JoystickMoved()) {
                 usingPad = true;
                 oldMousePos = Input.mousePosition;
-                Debug.Log("Using pad");
                 Cursor.visible = false;
             }
         }
