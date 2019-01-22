@@ -15,7 +15,9 @@ namespace Wokarol.MenuSystem
                 GoToPreviousMenuScene();
             }
         }
-
+        public void Quit() {
+            Application.Quit();
+        }
         public void ChangeMenuScene(string name) {
             if (!transitionController.InMotion)
                 transitionController.CallTransition(() => controller.ChangeMenuScene(name));
