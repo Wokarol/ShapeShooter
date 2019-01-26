@@ -64,10 +64,12 @@ namespace Wokarol.LevelBrains
         [SerializeField] Spawner shootingLevelSpawner = null;
         [SerializeField] SubLevelSwitch subLevelSwitch = null;
 
+#if UNITY_EDITOR
         [Header("Debug")]
         [SerializeField] bool ovverideSave = false;
         [SerializeField] LevelState startState = LevelState.Moving;
-        enum LevelState { Moving, Shooting }
+        enum LevelState { Moving, Shooting } 
+#endif
 
         float startTimestamp;
         float waveWaitTimeTimestamp;
@@ -144,6 +146,7 @@ namespace Wokarol.LevelBrains
                 () => exitTarget.Achieved,
                 new WaitState("EXIT"));
 
+#if UNITY_EDITOR
             if (ovverideSave) {
                 Debug.Log("Ovveriden save");
                 switch (startState) {
@@ -154,8 +157,9 @@ namespace Wokarol.LevelBrains
                     case LevelState.Shooting:
                         saveData.SendEntry(SaveDataKey, LvlShootingID);
                         break;
-                } 
-            }
+                }
+            } 
+#endif
             switch (saveData.GetEntry(SaveDataKey, LvlBegginignID)) {
                 default:
                 case LvlBegginignID:

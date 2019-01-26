@@ -6,12 +6,17 @@ namespace Wokarol.LevelDesign
 {
     public class MovePoint : Objective
     {
-        private bool achieved = false;
+        [SerializeField] bool deactivateOnTouch = false;
+
         public override bool Achieved => achieved;
+        private bool achieved = false;
 
         private void OnTriggerEnter2D(Collider2D collision) {
-            achieved = true;
-            gameObject.SetActive(false);
+            if (!achieved) {
+                achieved = true;
+                OnAchieved.Invoke();
+                if (deactivateOnTouch) gameObject.SetActive(false); 
+            }
         }
     }
 }

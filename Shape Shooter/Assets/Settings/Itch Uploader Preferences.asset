@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buildFolder: Build
   _username: wokarol
-  _gameName: shapeshooter
+  _gameName: none
   _zipName: ShapeShooter

@@ -14,6 +14,8 @@ namespace Wokarol.ItchUploader
 {
     public class ItchUploader : EditorWindow
     {
+        static TimeSpan maxTimeSinceLastWrite = new TimeSpan(0, 15, 0);
+
         [MenuItem("Commands/Upload to Itch %&b")]
         public static void Upload() {
             ItchUploaderPreferences preferences = GetPreferences();
@@ -27,28 +29,34 @@ namespace Wokarol.ItchUploader
                 string winPixEventRuntimeDll = Directory.GetFiles(path, "*.dll").FirstOrDefault((s) => Regex.IsMatch(s, @"^.*(\/|\\)WinPixEventRuntime.dll$"));
                 string[] otherFiles = Directory.GetFiles(path).Where((s) => s != crashHandlerPath && s != winPixEventRuntimeDll && s != zipPath).ToArray();
 
-                using (ZipOutputStream s = new ZipOutputStream(File.Open(zipPath, FileMode.Create))) {
-                    s.SetLevel(2);
+                DateTime writeTime = Directory.GetLastWriteTime(path);
+                TimeSpan timeSinceLastWrite = DateTime.Now - writeTime;
 
-                    byte[] buffer = new byte[4096];
+                if (TimeSpan.Compare(timeSinceLastWrite, maxTimeSinceLastWrite) > 0 &&
+                    !EditorUtility.DisplayDialog("Old Build!!!", "Build is older than 15 minutes, are you sure that it's recent one?", "Upload", "Don't upload"))
+                    return;
 
-                    List<string> files = new List<string>();
-                    files.AddRange(otherFiles);
-
-                    ZipFiles(s, buffer, files.ToArray(), path);
-                    ZipDirectories(subfoldersPaths, s, buffer, path);
-
-                    s.Finish();
-                    s.Close();
-                }
-
-                System.Diagnostics.Process.Start($"cmd.exe", $"/C butler push \"{zipPath}\" {preferences.Username}/{preferences.GameName}:win & pause");
+                ZipAndUpload(preferences, path, zipPath, subfoldersPaths, otherFiles);
             }
         }
 
-        [MenuItem("Commands/test")]
-        public static void Test() {
-            System.Diagnostics.Process.Start($"cmd.exe");
+        private static void ZipAndUpload(ItchUploaderPreferences preferences, string path, string zipPath, string[] subfoldersPaths, string[] otherFiles) {
+            using (ZipOutputStream s = new ZipOutputStream(File.Open(zipPath, FileMode.Create))) {
+                s.SetLevel(2);
+
+                byte[] buffer = new byte[4096];
+
+                List<string> files = new List<string>();
+                files.AddRange(otherFiles);
+
+                ZipFiles(s, buffer, files.ToArray(), path);
+                ZipDirectories(subfoldersPaths, s, buffer, path);
+
+                s.Finish();
+                s.Close();
+            }
+
+            System.Diagnostics.Process.Start($"cmd.exe", $"/C butler push \"{zipPath}\" {preferences.Username}/{preferences.GameName}:win & pause");
         }
 
         private static void ZipDirectories(string[] subfoldersPaths, ZipOutputStream s, byte[] buffer, string basePath) {

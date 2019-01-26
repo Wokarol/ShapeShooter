@@ -17,11 +17,11 @@ namespace Wokarol.GunSystem
         private void Update() {
             if(input.Shoot && shotCountdown < 0) {
                 shotCountdown = shotInterval.Value;
-                Shot();
+                Shoot();
             }
             shotCountdown -= Time.deltaTime;
         }
 
-        protected abstract void Shot();
+        protected abstract void Shoot();
     } 
 }
