@@ -13,23 +13,35 @@ MonoBehaviour:
   m_Name: Standard Enemies Wave
   m_EditorClassIdentifier: 
   spawnPoints:
-  - point: {x: -6.1954346, y: 6.0255375}
+  - point: {x: -16.02606, y: 8.408469}
     spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
-  - point: {x: 5.8294373, y: 5.9884233}
+  - point: {x: 15.960884, y: 8.408469}
     spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
-  - point: {x: 5.9036636, y: -5.999335}
+  - point: {x: 15.875584, y: -8.096793}
     spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
-  - point: {x: -6.158325, y: -5.925107}
+  - point: {x: -16.02606, y: -8.224742}
     spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
-  - point: {x: -14.026451, y: 0.01310125}
-    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
-  - point: {x: -14.026451, y: 6.0626516}
-    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
-  - point: {x: -13.952225, y: -6.036449}
-    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
-  - point: {x: 14.180042, y: -5.962221}
-    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
-  - point: {x: 14.217155, y: 0.050215423}
-    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
-  - point: {x: 14.254269, y: 6.0626516}
-    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: -15.940759, y: -0.20668125}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -0.58702874, y: 8.451118}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 16.04618, y: 0.2624607}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -0.16053534, y: -8.182093}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -8.818334, y: -4.5995545}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -8.818334, y: 4.1008935}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 8.411964, y: 4.1435432}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 8.497262, y: -5.0260477}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -0.2884841, y: -5.281943}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -7.027066, y: 0.2624607}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -0.62967753, y: 4.5700355}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 6.1942015, y: -0.036084592}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}

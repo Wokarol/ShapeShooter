@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54eb531e813f74f408e5d56e03399cb9, type: 3}
+  m_Name: Shooting Enemies Wave
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - point: {x: -0.11788678, y: 4.612685}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: -5.704939, y: 0.2198112}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: -0.11788678, y: -4.6422043}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: 4.4455824, y: 0.049214542}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: 3.208755, y: 3.5038047}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: -4.0416174, y: 3.247909}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: -3.9136703, y: -3.106831}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: 3.4646494, y: -3.1921296}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: -16.196657, y: 8.621716}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: 16.387375, y: 8.621716}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: 16.430023, y: -8.565935}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: -16.5805, y: -8.651235}
+    spawnable: {fileID: 11400000, guid: a857dc8aa4121434eb7a741b0b10f7d4, type: 2}
+  - point: {x: -11.249342, y: 8.451118}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 11.653306, y: 8.536418}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 16.088829, y: 4.697983}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 16.259426, y: -5.4098907}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: 12.71954, y: -8.395339}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -12.656768, y: -8.693884}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -16.537851, y: -5.580488}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}
+  - point: {x: -16.452553, y: 5.7642155}
+    spawnable: {fileID: 11400000, guid: 74a44f0359e054f41b70c5d45fb5ef0d, type: 2}

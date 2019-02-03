@@ -49,7 +49,7 @@ namespace Wokarol.LevelBrains
 
         [Header("Waves")]
         [SerializeField] WavePattern waveWithDummies = null;
-        [SerializeField] WavePattern waveWithStandardEnemies = null;
+        [SerializeField] WavePattern[] shootingWaves = null;
 
         [Header("Helpers")]
         [SerializeField] Animator movementHelper = null;
@@ -68,7 +68,7 @@ namespace Wokarol.LevelBrains
         [Header("Debug")]
         [SerializeField] bool ovverideSave = false;
         [SerializeField] LevelState startState = LevelState.Moving;
-        enum LevelState { Moving, Shooting } 
+        enum LevelState { Moving, Shooting }
 #endif
 
         float startTimestamp;
@@ -97,7 +97,18 @@ namespace Wokarol.LevelBrains
             var movingBoth = new MoveObjectsState("Moving whole space", 1, new MovingObjectsGroup[] { verticalGroup, horizontalGroup }, 1);
             var waitBeforeFirstWave = new WaitState("Waiting for first wave");
             var dummiesWave = new SpawnWaveState("Spawning dummies wave", shootingLevelSpawner, waveWithDummies, 0.1f);
-            var normalWave = new SpawnWaveState("Spawning acctual wave", shootingLevelSpawner, waveWithStandardEnemies, 0.1f);
+
+            SpawnWaveState[] spawnWaveStates = new SpawnWaveState[shootingWaves.Length];
+            for (int i = 0; i < shootingWaves.Length; i++) {
+                var state = spawnWaveStates[i] = new SpawnWaveState($"Spawning wave {i}", shootingLevelSpawner, shootingWaves[i], 0.1f);
+                if (i != 0) {
+                    var prevState = spawnWaveStates[i - 1];
+                    prevState.AddTransition(
+                        () => prevState.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
+                        state);
+                }
+            }
+
             var openingWalls = new MoveObjectsState("Opening Wall", 1, leftDoorGroup, 1);
             var waitForExit = new WaitState("Wait for exit");
 
@@ -135,9 +146,9 @@ namespace Wokarol.LevelBrains
                 dummiesWave);
             dummiesWave.AddTransition(
                 () => dummiesWave.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
-                normalWave);
-            normalWave.AddTransition(
-                () => normalWave.Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
+                spawnWaveStates[0]);
+            spawnWaveStates[spawnWaveStates.Length - 1].AddTransition(
+                () => spawnWaveStates[spawnWaveStates.Length - 1].Finished && shootingLevelSpawner.CurrentEnemyCount == 0,
                 openingWalls);
             openingWalls.AddTransition(
                 () => openingWalls.Finished,
@@ -158,7 +169,7 @@ namespace Wokarol.LevelBrains
                         saveData.SendEntry(SaveDataKey, LvlShootingID);
                         break;
                 }
-            } 
+            }
 #endif
             switch (saveData.GetEntry(SaveDataKey, LvlBegginignID)) {
                 default:
@@ -168,7 +179,7 @@ namespace Wokarol.LevelBrains
                     break;
                 case LvlShootingID:
                     subLevelSwitch.ChangeLevel(shootingLevelID);
-                    levelMachine = new StateMachine(normalWave, BrainDebugBlock);
+                    levelMachine = new StateMachine(dummiesWave, BrainDebugBlock);
                     break;
             }
 

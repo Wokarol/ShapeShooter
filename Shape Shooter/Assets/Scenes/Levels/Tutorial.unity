@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -440,7 +440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &184349492
 Transform:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &466223379
 Transform:
   m_ObjectHideFlags: 0
@@ -1218,8 +1218,9 @@ MonoBehaviour:
   targetRight: {fileID: 1160803168}
   exitTarget: {fileID: 1067124097}
   waveWithDummies: {fileID: 11400000, guid: 2722a2029f9fa374b99a50da4ecc085b, type: 2}
-  waveWithStandardEnemies: {fileID: 11400000, guid: 4fbc8ac9e90dac14a9efd3e528678dc8,
-    type: 2}
+  shootingWaves:
+  - {fileID: 11400000, guid: 4fbc8ac9e90dac14a9efd3e528678dc8, type: 2}
+  - {fileID: 11400000, guid: 3a4282ab10c3119429a1a3921fa85fe9, type: 2}
   movementHelper: {fileID: 1189971849}
   aimingHelper: {fileID: 672214094}
   exitArrow: {fileID: 1195957879}
@@ -1227,8 +1228,8 @@ MonoBehaviour:
   timeToStartAfterTeleport: 1
   shootingLevelSpawner: {fileID: 1886413542}
   subLevelSwitch: {fileID: 250497191}
-  ovverideSave: 0
-  startState: 0
+  ovverideSave: 1
+  startState: 1
 --- !u!4 &551052979
 Transform:
   m_ObjectHideFlags: 0
@@ -2155,8 +2156,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8664309779431635505, guid: ad8dfd5b15eff264299ec746a0c11438,
+        type: 3}
+      propertyPath: OnAchieved.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7485647692635511856, guid: ad8dfd5b15eff264299ec746a0c11438, type: 3}
+    - {fileID: 3742092831733660525, guid: ad8dfd5b15eff264299ec746a0c11438, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ad8dfd5b15eff264299ec746a0c11438, type: 3}
 --- !u!4 &1067124096 stripped
 Transform:
@@ -3530,6 +3537,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0.02049759
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.9590048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1930592202147657234, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
