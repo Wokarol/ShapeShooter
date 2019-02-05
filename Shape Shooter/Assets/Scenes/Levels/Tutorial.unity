@@ -1057,6 +1057,12 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1394271500}
+    - target: {fileID: 8714523164275174686, guid: ac4d9425548066b4eb5880a5581c2010,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300006, guid: e273035eefc139549a1e7c2356854eab,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac4d9425548066b4eb5880a5581c2010, type: 3}
 --- !u!1 &538684889
@@ -1194,7 +1200,7 @@ MonoBehaviour:
   shootingLevelSpawner: {fileID: 1886413542}
   subLevelSwitch: {fileID: 250497191}
   ovverideSave: 1
-  startState: 1
+  startState: 0
 --- !u!4 &551052979
 Transform:
   m_ObjectHideFlags: 0
@@ -3502,6 +3508,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.0339033
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.9321934
       objectReference: {fileID: 0}
     - target: {fileID: 1930592202147657234, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
