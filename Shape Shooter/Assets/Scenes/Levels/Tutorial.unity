@@ -3527,7 +3527,7 @@ PrefabInstance:
     - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.0339033
+      value: 0.112155885
       objectReference: {fileID: 0}
     - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
@@ -3537,7 +3537,27 @@ PrefabInstance:
     - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9321934
+      value: 0.77568823
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.22352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.24313727
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.27450982
       objectReference: {fileID: 0}
     - target: {fileID: 1930592202147657234, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
@@ -3593,6 +3613,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930592203223695935, guid: 1e2cc9e765325f74f915a16a9a283924,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e2cc9e765325f74f915a16a9a283924, type: 3}
