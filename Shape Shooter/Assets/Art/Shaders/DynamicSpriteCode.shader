@@ -49,7 +49,7 @@
 				};
 
 				fixed4 _Color;
-				float3 _Direction;
+				float4 _Direction;
 				float _Speed;
 				float2 _MinMax;
 
@@ -66,13 +66,14 @@
 
 					float dist = length(v - _Direction);
 					float remapedDist = map(dist, _MinMax.x, _MinMax.y, 0, 1);
-					float targetPos = lerp(v, _Direction, remapedDist);
+					float4 targetPos = lerp(v, _Direction, remapedDist);
 
 					v = lerp(v, targetPos, _Speed);
 
 					OUT.vertex = UnityObjectToClipPos(v);
 					OUT.texcoord = IN.texcoord;
 					OUT.color = IN.color * _Color;
+
 					#ifdef PIXELSNAP_ON
 					OUT.vertex = UnityPixelSnap(OUT.vertex);
 					#endif
