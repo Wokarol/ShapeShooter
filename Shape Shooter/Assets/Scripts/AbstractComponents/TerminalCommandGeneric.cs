@@ -21,7 +21,7 @@ namespace CommandTerminal
         private void OnEnable()
         {
             if (canRegisterCommand) {
-                Debug.Log($"Registered {commandName}");
+                //Debug.Log($"Registered {commandName}");
                 var formattedCommand = commandName
                        .Replace("{name}", name)
                        .Replace("{parent_name}", (transform.parent != null) ? transform.parent.name : name);

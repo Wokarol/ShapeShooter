@@ -1057,41 +1057,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1394271500}
-    - target: {fileID: 7747370660302839764, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.098039225
-      objectReference: {fileID: 0}
-    - target: {fileID: 7747370660302839764, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.9607844
-      objectReference: {fileID: 0}
-    - target: {fileID: 7747370660302839764, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899529246868871877, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899529246868871877, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.6784314
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899529246868871877, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.70980394
-      objectReference: {fileID: 0}
-    - target: {fileID: 5899529246868871877, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.5019608
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac4d9425548066b4eb5880a5581c2010, type: 3}
 --- !u!1 &538684889
@@ -3538,26 +3503,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraRig
       objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0.02049759
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9590048
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1930592202147657234, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3611,31 +3556,6 @@ PrefabInstance:
     - target: {fileID: 1930592202147657234, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223696065, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223696065, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223696065, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592202898077390, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592202898077390, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

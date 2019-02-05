@@ -13,15 +13,15 @@ namespace Wokarol
 		public float ratio = 1f;
 		new Camera camera;
 		// Functions
-		private void Awake ()
+		private void Start ()
 		{
-			camera = GetComponent<Camera>();
+            camera = GetComponent<Camera>();
 			camera.aspect = ratio;
 		}
 
 		private void Update ()
 		{
-			var rect = camera.rect;
+            var rect = camera.rect;
 			if(Screen.width > (Screen.height * ratio)) {
 				// Horizontal
 				rect.height = 1;
@@ -36,10 +36,17 @@ namespace Wokarol
 			camera.rect = rect;
 		}
 
-		private void OnValidate ()
+        private void OnDisable() {
+            camera.ResetAspect();
+            camera.rect = new Rect(0, 0, 1, 1);
+        }
+
+        private void OnValidate ()
 		{
-			camera = GetComponent<Camera>();
-			camera.aspect = ratio;
+            if (enabled) {
+                camera = GetComponent<Camera>();
+                camera.aspect = ratio; 
+            }
 		}
 	}
 }
