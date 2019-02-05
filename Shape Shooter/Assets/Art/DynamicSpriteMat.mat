@@ -29,4 +29,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Direction: {r: 0.707, g: 0.707, b: 0, a: 0}
-    - _MinMax: {r: 0, g: 1, b: 0, a: 0}
+    - _MinMax: {r: 1.59, g: -2.06, b: 0, a: 0}

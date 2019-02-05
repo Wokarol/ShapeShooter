@@ -49,7 +49,7 @@
 				};
 
 				fixed4 _Color;
-				float4 _Direction;
+				float3 _Direction;
 				float _Speed;
 				float2 _MinMax;
 
