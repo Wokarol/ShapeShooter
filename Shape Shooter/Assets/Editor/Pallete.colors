@@ -27,3 +27,7 @@ MonoBehaviour:
     m_Color: {r: 0.98823535, g: 0.23529413, b: 0.23529413, a: 1}
   - m_Name: Light Reddish
     m_Color: {r: 1, g: 0.3372549, b: 0.3372549, a: 1}
+  - m_Name: Text
+    m_Color: {r: 0.972549, g: 0.867451, b: 0.5835294, a: 1}
+  - m_Name: DisabledText
+    m_Color: {r: 0.3490566, g: 0.34681138, b: 0.34082413, a: 1}

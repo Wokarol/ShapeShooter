@@ -704,6 +704,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1430726994}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &199805347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7674085954449888368, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+    type: 3}
+  m_PrefabInstance: {fileID: 1430726994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199805345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &199805349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,6 +1168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7674085953833055262, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}
@@ -1623,7 +1640,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 456.55
+  m_fontSize: 448.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1886,6 +1903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Settings
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7674085953833055262, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}
@@ -2198,6 +2220,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7674085953833055262, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}
@@ -2725,13 +2752,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenes:
   - name: Main
+    defaultSelected: {fileID: 1638030329}
     sceneElements:
     - {fileID: 1902489502}
     - {fileID: 329480770}
   - name: Settings
+    defaultSelected: {fileID: 1792037559}
     sceneElements:
     - {fileID: 1942801842}
   - name: Test
+    defaultSelected: {fileID: 0}
     sceneElements:
     - {fileID: 837231449}
 --- !u!1 &1396766314
@@ -2955,6 +2985,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7674085953833055262, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3060,6 +3100,26 @@ PrefabInstance:
       propertyPath: m_textInfo.lineCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7674085954449888368, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.972549
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954449888368, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.867451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954449888368, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5835294
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954449888368, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283848793
+      objectReference: {fileID: 0}
     - target: {fileID: 7674085954486460626, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}
       propertyPath: m_IsActive
@@ -3068,6 +3128,11 @@ PrefabInstance:
     - target: {fileID: 7674085953623897275, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954795408582, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3101,6 +3166,35 @@ MonoBehaviour:
     ScriptableVariable: {fileID: 11400000, guid: 6cd3be03d2cbe124ab21f473c4616fe1,
       type: 2}
     ConstantValue: 
+--- !u!114 &1430726998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430726996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc613140bf707a4e810e829db1e0d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Tutorial_Finished
+  saveData: {fileID: 11400000, guid: 12e57c6afa3771b47bab510bc0662b48, type: 2}
+  selectable: {fileID: 1430726999}
+  text: {fileID: 199805347}
+  disabledTextColor: {r: 0.3490566, g: 0.34681138, b: 0.34082413, a: 1}
+--- !u!114 &1430726999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+    type: 3}
+  m_PrefabInstance: {fileID: 1430726994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430726996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1460676559
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,6 +3474,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7674085953833055262, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3501,6 +3600,12 @@ MonoBehaviour:
     ScriptableVariable: {fileID: 11400000, guid: 3de774c9ea035f24185f94b08048bd33,
       type: 2}
     ConstantValue: 
+--- !u!1 &1792037559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7674085954795408633, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+    type: 3}
+  m_PrefabInstance: {fileID: 1858334114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1858334114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3617,6 +3722,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674085954795408583, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7674085953833055262, guid: bedbc2b24bf2dcd43a1fea5f1924e068,
         type: 3}

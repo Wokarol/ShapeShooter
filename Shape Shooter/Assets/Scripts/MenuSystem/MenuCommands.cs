@@ -11,7 +11,7 @@ namespace Wokarol.MenuSystem
         [SerializeField] KeyCode backKey = KeyCode.Escape;
 
         private void Update() {
-            if (Input.GetKeyDown(backKey)) {
+            if (Input.GetKeyDown(backKey) || Input.GetButtonDown("Cancel")) {
                 GoToPreviousMenuScene();
             }
         }

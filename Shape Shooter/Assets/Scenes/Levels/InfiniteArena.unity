@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 873060920}
   - component: {fileID: 873060919}
   - component: {fileID: 873060921}
+  - component: {fileID: 873060922}
   m_Layer: 0
   m_Name: Brain
   m_TagString: Untagged
@@ -473,6 +474,25 @@ MonoBehaviour:
     ScriptableVariable: {fileID: 11400000, guid: ad6242a4356595749868bd2c0117bc60,
       type: 2}
     ConstantValue: 0
+--- !u!114 &873060922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873060918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7277511f9e0a54abb43967fc725bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuSceneName:
+    UseConstant: 0
+    ScriptableVariable: {fileID: 11400000, guid: e84fd699a553af7429eceb36fdc4daf8,
+      type: 2}
+    ConstantValue: 
+  backKey: 27
+  button: Menu
 --- !u!1001 &907707029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -679,11 +699,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1542807887}
@@ -1275,7 +1295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049464240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.676866, y: -3.5969324, z: -6.3632812}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

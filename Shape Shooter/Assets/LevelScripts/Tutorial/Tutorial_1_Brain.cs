@@ -14,6 +14,7 @@ namespace Wokarol.LevelBrains
         private const string SaveDataKey = "LastPositionInLevel";
         private const string LvlBegginignID = "Beggining";
         private const string LvlShootingID = "Shooting";
+        private const string TutorialFinishedKey = "Tutorial_Finished";
 
         private const string TimeID = "Brain_Time";
         private readonly int HelperAnimatorActiveBoolHash = Animator.StringToHash("Active");
@@ -126,6 +127,7 @@ namespace Wokarol.LevelBrains
             waitForExit.OnEnter += () => exitTarget.gameObject.SetActive(true);
             waitForExit.OnEnter += () => exitArrow.SetBool(HelperAnimatorActiveBoolHash, true);
             waitForExit.OnExit += () => saveData.RemoveEntry(SaveDataKey);
+            waitForExit.OnExit += () => saveData.SendEntry(TutorialFinishedKey, true);
             waitForExit.OnExit += () => ScenesController.Instance.ChangeScene(nextScene.Value);
 
             // Transitions
@@ -159,7 +161,7 @@ namespace Wokarol.LevelBrains
 
 #if UNITY_EDITOR
             if (ovverideSave) {
-                Debug.Log("Ovveriden save");
+                Debug.Log("Overwritten save");
                 switch (startState) {
                     default:
                     case LevelState.Moving:

@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Wokarol.MenuSystem
 {
@@ -77,6 +79,8 @@ namespace Wokarol.MenuSystem
             if(pushToHistory && Application.isPlaying)
                 previousScenes.Push(currentScene);
             currentScene = scene;
+
+            EventSystem.current.SetSelectedGameObject(currentScene.DefaultSelected);
         }
 
     }
@@ -85,9 +89,11 @@ namespace Wokarol.MenuSystem
     public class MenuScene
     {
         [SerializeField] string name = "";
+        [SerializeField] GameObject defaultSelected;
         [SerializeField] GameObject[] sceneElements = new GameObject[0];
 
         public string Name => name;
+        public GameObject DefaultSelected => defaultSelected;
         public GameObject[] SceneElements => sceneElements;
     }
 }
