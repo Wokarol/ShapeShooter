@@ -159,5 +159,13 @@ namespace Wokarol.SerializationSystem
                 currentData.Remove(key);
             }
         }
-	}
+
+        /// <summary>
+        /// Checks if  entry exist in current data dictionary
+        /// </summary>
+        /// <param name="key">"Name" of the entry</param>
+        public bool ContainsEntry(string key) {
+            return currentData.ContainsKey(key);
+        }
+    }
 }

@@ -101,24 +101,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0.02049759
-      objectReference: {fileID: 0}
-    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
-        type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9590048
+      value: 0.00013297796
       objectReference: {fileID: 0}
     - target: {fileID: 827240905822156166, guid: 4480f969dac06b141876b135a294428e,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.99973404
       objectReference: {fileID: 0}
+    - target: {fileID: 827240905822156155, guid: 4480f969dac06b141876b135a294428e,
+        type: 3}
+      propertyPath: volumeTrigger
+      value: 
+      objectReference: {fileID: 1930592203223696065}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4480f969dac06b141876b135a294428e, type: 3}
 --- !u!4 &1930592203223696065 stripped

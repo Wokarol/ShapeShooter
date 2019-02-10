@@ -4743,7 +4743,7 @@ ParticleSystem:
 --- !u!199 &6225221503805027299
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4855,6 +4855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f11e670d9e2b3498e47432e5021544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsPerDestroyed: 10
   gfx: {fileID: 5394196992681714429}
   otherComponents:
   - {fileID: 2581888145263975914}
@@ -9799,7 +9800,7 @@ ParticleSystem:
 --- !u!199 &2713661316015312428
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

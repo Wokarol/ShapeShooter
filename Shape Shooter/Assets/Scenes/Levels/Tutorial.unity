@@ -1057,22 +1057,11 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1394271500}
-    - target: {fileID: 5390748996882154398, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5352936757100035271, guid: ac4d9425548066b4eb5880a5581c2010,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8714523164275174686, guid: ac4d9425548066b4eb5880a5581c2010,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300002, guid: e273035eefc139549a1e7c2356854eab,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac4d9425548066b4eb5880a5581c2010, type: 3}
 --- !u!1 &538684889
@@ -3521,43 +3510,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
+      propertyPath: m_NormalizedViewPortRect.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0.112155885
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
+      propertyPath: m_NormalizedViewPortRect.height
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 0.77568823
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0.009089291
       objectReference: {fileID: 0}
     - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.22352943
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.24313727
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695934, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.27450982
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.9818214
       objectReference: {fileID: 0}
     - target: {fileID: 1930592202147657234, guid: 1e2cc9e765325f74f915a16a9a283924,
         type: 3}
@@ -3613,11 +3582,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930592203223695935, guid: 1e2cc9e765325f74f915a16a9a283924,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e2cc9e765325f74f915a16a9a283924, type: 3}

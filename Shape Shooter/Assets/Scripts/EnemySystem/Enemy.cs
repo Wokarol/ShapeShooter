@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Wokarol.HealthSystem;
+using Wokarol.MessageSystem;
 using Wokarol.PoolSystem;
 
 public class Enemy : PoolObject
 {
+    [SerializeField] int pointsPerDestroyed = 5;
+
     [SerializeField] GameObject gfx = null;
     [SerializeField] Behaviour[] otherComponents = new Behaviour[0];
     IResetable[] resetables;
@@ -14,6 +17,8 @@ public class Enemy : PoolObject
     public System.Action<Enemy> OnEnemyDestroyed;
 
     public override void Destroy() {
+        Messenger.Default.SendMessage(new EnemyDestroyedEvent(pointsPerDestroyed, this));
+
         Deactivate();
         OnEnemyDestroyed?.Invoke(this);
         base.Destroy();
